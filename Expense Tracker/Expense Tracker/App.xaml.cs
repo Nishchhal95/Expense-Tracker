@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Expense_Tracker.Pages;
+using Expense_Tracker.Pages.Flyout;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,7 +11,7 @@ namespace Expense_Tracker
         public App()
         {
             InitializeComponent();
-            MainPage = new StartingPage();
+            MainPage = new ET_Flyout();
         }
 
         protected override void OnStart()
