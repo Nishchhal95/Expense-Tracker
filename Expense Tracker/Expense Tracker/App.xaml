@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Expense_Tracker.App">
+    <Application.Resources>
+
+        <!--Colors-->
+        <Color x:Key="ColorLevel1">#F79256</Color>
+        <Color x:Key="ColorLevel2">#FBD1A2</Color>
+        <Color x:Key="ColorLevel3">#7DCFB6</Color>
+        <Color x:Key="NormalTextColor">White</Color>
+        <Color x:Key="HeadingTextColor">Black</Color>
+        <Color x:Key="AppBackgroundColor">#00B2CA</Color>
+        <Color x:Key="ColorLevel5">#1D4E89</Color>
+
+        <Color x:Key="SelectedButtonColor">Green</Color>
+        <Color x:Key="UnSelectedButtonColor">#808080</Color>
+
+    </Application.Resources>
+</Application>
