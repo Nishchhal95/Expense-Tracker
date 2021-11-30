@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expense Tracker.UWP", "Expe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expense Tracker.Android", "Expense Tracker\Expense Tracker.Android\Expense Tracker.Android.csproj", "{28AE995B-6FD0-483E-A7D1-C240F4ECFDB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expense Tracker", "Expense Tracker\Expense Tracker\Expense Tracker.csproj", "{08286B8C-D98A-4926-95C2-2102F2965E6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expense Tracker", "Expense Tracker\Expense Tracker\Expense Tracker.csproj", "{08286B8C-D98A-4926-95C2-2102F2965E6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -16,6 +16,14 @@ namespace Expense_Tracker.Pages.Flyout
         {
             InitializeComponent();
             FlyoutPage.ListView.ItemSelected += ListView_ItemSelected;
+            SetStartingPage();
+        }
+
+        private void SetStartingPage()
+        {
+            var page = (Page)Activator.CreateInstance(typeof(P_HomePage));
+            page.Title = "Home";
+            Detail = new NavigationPage(page);
         }
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)

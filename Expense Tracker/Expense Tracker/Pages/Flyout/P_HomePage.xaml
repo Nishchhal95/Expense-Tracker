@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Expense_Tracker.Pages.Flyout.P_HomePage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame CornerRadius="40" BackgroundColor="Black" Margin="20,20,20,20" HeightRequest="100">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                    <Label Text="$" FontSize="30" TextColor="White" Margin="20,30,0,0"></Label>
+                    <Label Text="1000" FontSize="60" TextColor="White" WidthRequest="250"></Label>
+                    <Label Text="USD" FontSize="15" TextColor="LightGray" HorizontalOptions="End" Margin="0,45,0,0"></Label>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout Orientation="Horizontal" Spacing="190">
+                <Label Text="Expenses" FontSize="20" TextColor="Black" HorizontalOptions="Start" Margin="25,5,0,0"></Label>
+                <Button Text="View All" FontSize="12" HeightRequest="10" CornerRadius="20" HorizontalOptions="End"></Button>
+            </StackLayout>
+
+            <ListView x:Name="HomeExpensesListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="hamburger.png"></Image>
+                            <StackLayout>
+                                <!--<Label Text="{Binding expenseType}"></Label>-->
+                                <Label Text="{Binding description}"></Label>
+                            </StackLayout>
+                            <Label Text="{Binding amount}"></Label>
+                        </StackLayout>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -34,12 +34,17 @@
     <EmbeddedResource Update="Pages\Flyout\ET_FlyoutFlyout.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Flyout\P_HomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="StartingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
+    <Compile Update="Pages\Flyout\ET_FlyoutFlyout.xaml.cs">
+      <DependentUpon>ET_FlyoutFlyout.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
