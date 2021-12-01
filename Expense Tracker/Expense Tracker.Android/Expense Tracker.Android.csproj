@@ -83,7 +83,9 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\bubbletea.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Expense Tracker\Expense Tracker.csproj">
       <Project>{E0E49CFE-D02B-476B-9927-B6897DA64BC6}</Project>
