@@ -6,10 +6,10 @@ namespace Expense_Tracker.Model
 {
     public class Expense
     {
-        public int id;
-        public float amount;
-        public ExpenseType expenseType;
-        public string description;
+        public int id { get; set; }
+        public float amount { get; set; }
+        public ExpenseType expenseType { get; set; }
+        public string description { get; set; }
 
         public Expense(int id, float amount, ExpenseType expenseType, string description)
         {
