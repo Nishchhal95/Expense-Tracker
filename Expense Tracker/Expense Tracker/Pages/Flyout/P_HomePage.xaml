@@ -33,21 +33,25 @@
                 </ListView.ItemTemplate>
             </ListView>-->
 
-            <CollectionView x:Name="HomeExpensesCollectionView" SelectionMode="Single" Margin="10,0,0,0">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
-                            <Image Source="bubbletea.png" HeightRequest="20" WidthRequest="20"></Image>
-                            <StackLayout WidthRequest="250">
-                                <Label Text="{Binding expenseType}" FontSize="20"></Label>
-                                <Label Text="{Binding description}" FontSize="15"></Label>
+            <Grid>
+                <CollectionView x:Name="HomeExpensesCollectionView" SelectionMode="Single" Margin="10,0,0,0" Grid.Row="0">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
+                                <Image Source="bubbletea.png" HeightRequest="20" WidthRequest="20"></Image>
+                                <StackLayout WidthRequest="250">
+                                    <Label Text="{Binding expenseType}" FontSize="20"></Label>
+                                    <Label Text="{Binding description}" FontSize="15"></Label>
+                                </StackLayout>
+                                <Label Text="{Binding amount, StringFormat=${0}}" FontSize="25"></Label>
                             </StackLayout>
-                            <Label Text="{Binding amount, StringFormat=${0}}" FontSize="25"></Label>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <ImageButton x:Name="AddExpenseButton" Clicked="AddExpenseButton_Clicked" Source="bubbletea.png" HeightRequest="60" WidthRequest="60" HorizontalOptions="End" 
+                             VerticalOptions="End" Padding="10" Margin="0,0,30,30" Grid.Row="0"></ImageButton>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

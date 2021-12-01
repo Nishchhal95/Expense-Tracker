@@ -34,5 +34,28 @@ namespace Expense_Tracker.Pages.Flyout
                 expenses.Add(new Model.Expense(i, (100 * i) + 100, Model.ExpenseType.Service, "Electricity Bill"));
             }
         }
+
+        private void AddExpenseButton_Clicked(object sender, EventArgs e)
+        {
+            OpenAddExpensePage();
+        }
+
+        private void OpenAddExpensePage()
+        {
+            //TODO : For the time being we just directly add a dummy expense
+            expenses.Add(new Model.Expense(expenses.Count, 
+                GetRandomNumberWithinRange(50, 5000), 
+                (Model.ExpenseType)GetRandomNumberWithinRange(0, Enum.GetValues(typeof(Model.ExpenseType)).Length), 
+                "Demo Description"));
+
+            HomeExpensesCollectionView.SelectedItem = expenses[expenses.Count - 1];
+            HomeExpensesCollectionView.ScrollTo(expenses[expenses.Count - 1]);
+        }
+
+        private int GetRandomNumberWithinRange(int starting, int end)
+        {
+            Random r = new Random();
+            return r.Next(starting, end);
+        }
     }
 }
