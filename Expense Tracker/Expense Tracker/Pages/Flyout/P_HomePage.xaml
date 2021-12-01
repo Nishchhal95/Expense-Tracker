@@ -17,20 +17,36 @@
                 <Button Text="View All" FontSize="12" HeightRequest="10" CornerRadius="20" HorizontalOptions="End"></Button>
             </StackLayout>
 
-            <ListView x:Name="HomeExpensesListView">
+            <!--<ListView x:Name="HomeExpensesListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Orientation="Horizontal">
+                        <TextCell Text="{Binding amount}"></TextCell>
+                        --><!--<StackLayout Orientation="Horizontal">
                             <Image Source="hamburger.png"></Image>
                             <StackLayout>
-                                <!--<Label Text="{Binding expenseType}"></Label>-->
+                                <Label Text="{Binding expenseType}"></Label>
+                                <Label Text="{Binding description}"></Label>
+                            </StackLayout>
+                            <Label Text="{Binding amount}"></Label>
+                        </StackLayout>--><!--
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+
+            <CollectionView x:Name="HomeExpensesCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                            <Image Source="hamburger.png"></Image>
+                            <StackLayout>
+                                <Label Text="{Binding expenseType}"></Label>
                                 <Label Text="{Binding description}"></Label>
                             </StackLayout>
                             <Label Text="{Binding amount}"></Label>
                         </StackLayout>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
             
         </StackLayout>
     </ContentPage.Content>
