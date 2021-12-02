@@ -14,7 +14,7 @@
 
             <StackLayout Orientation="Horizontal" Spacing="190">
                 <Label Text="Expenses" FontSize="20" TextColor="Black" HorizontalOptions="Start" Margin="25,5,0,0"></Label>
-                <Button Text="View All" FontSize="12" HeightRequest="10" CornerRadius="20" HorizontalOptions="End"></Button>
+                <Button x:Name="ViewAllExpensesButton" Clicked="ViewAllExpensesButton_Clicked" Text="View All" FontSize="12" HeightRequest="10" CornerRadius="20" HorizontalOptions="End"></Button>
             </StackLayout>
 
             <!--<ListView x:Name="HomeExpensesListView">

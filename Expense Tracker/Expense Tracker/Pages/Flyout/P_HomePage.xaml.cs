@@ -13,8 +13,6 @@ namespace Expense_Tracker.Pages.Flyout
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class P_HomePage : ContentPage
     {
-        private ObservableCollection<Model.Expense> expenses = new ObservableCollection<Model.Expense>();
-        public ObservableCollection<Model.Expense> Expenses { get { return expenses; } }
         public P_HomePage()
         {
             InitializeComponent();
@@ -23,39 +21,41 @@ namespace Expense_Tracker.Pages.Flyout
 
         private void UpdateExpenses()
         {
-            HomeExpensesCollectionView.ItemsSource = expenses;
-            GetExpenses();
-        }
-
-        private void GetExpenses()
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                expenses.Add(new Model.Expense(i, (100 * i) + 100, Model.ExpenseType.Service, "Electricity Bill"));
-            }
+            HomeExpensesCollectionView.ItemsSource = App.Expenses;
         }
 
         private void AddExpenseButton_Clicked(object sender, EventArgs e)
         {
-            OpenAddExpensePage();
+            OpenAddExpensePageAsync();
         }
 
-        private void OpenAddExpensePage()
+        private void OpenAddExpensePageAsync()
         {
+            //await Navigation.PushAsync(new P_AddExpensePage());
             //TODO : For the time being we just directly add a dummy expense
-            expenses.Add(new Model.Expense(expenses.Count, 
+            App.Expenses.Add(new Model.Expense(App.Expenses.Count, 
                 GetRandomNumberWithinRange(50, 5000), 
                 (Model.ExpenseType)GetRandomNumberWithinRange(0, Enum.GetValues(typeof(Model.ExpenseType)).Length), 
                 "Demo Description"));
 
-            HomeExpensesCollectionView.SelectedItem = expenses[expenses.Count - 1];
-            HomeExpensesCollectionView.ScrollTo(expenses[expenses.Count - 1]);
+            HomeExpensesCollectionView.SelectedItem = App.Expenses[App.Expenses.Count - 1];
+            HomeExpensesCollectionView.ScrollTo(App.Expenses[App.Expenses.Count - 1]);
         }
 
         private int GetRandomNumberWithinRange(int starting, int end)
         {
             Random r = new Random();
             return r.Next(starting, end);
+        }
+
+        private void ViewAllExpensesButton_Clicked(object sender, EventArgs e)
+        {
+            OpenViewAllExpensesPageAsync();
+        }
+
+        private async Task OpenViewAllExpensesPageAsync()
+        {
+            await Navigation.PushAsync(new P_ViewAllExpensesPage());
         }
     }
 }

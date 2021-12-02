@@ -34,7 +34,7 @@ namespace Expense_Tracker.Pages.Flyout
                 MenuItems = new ObservableCollection<ET_FlyoutFlyoutMenuItem>(new[]
                 {
                     new ET_FlyoutFlyoutMenuItem { Id = 0, Title = "Home" , TargetType = typeof(P_HomePage)},
-                    new ET_FlyoutFlyoutMenuItem { Id = 1, Title = "Expenses" },
+                    new ET_FlyoutFlyoutMenuItem { Id = 1, Title = "Expenses" , TargetType = typeof(P_ViewAllExpensesPage)},
                     new ET_FlyoutFlyoutMenuItem { Id = 2, Title = "Reminders" },
                     new ET_FlyoutFlyoutMenuItem { Id = 3, Title = "Visualize Expenses" },
                     new ET_FlyoutFlyoutMenuItem { Id = 4, Title = "Settings" },

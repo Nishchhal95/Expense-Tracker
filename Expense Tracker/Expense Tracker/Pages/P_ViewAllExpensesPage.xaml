@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Expense_Tracker.Pages.P_ViewAllExpensesPage"
+             Title="View Expenses">
+    <ContentPage.Content>
+        <StackLayout>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="100" Margin="10,0,10,0">
+                <StackLayout HorizontalOptions="FillAndExpand">
+                    <Label Text="Filter"></Label>
+                    <Entry x:Name="ViewExpensesFilter" Placeholder="Filter" TextChanged="ViewExpensesFilter_TextChanged"></Entry>
+                </StackLayout>
+
+                <StackLayout  HorizontalOptions="FillAndExpand">
+                    <Label Text="Sort By"></Label>
+                    <Picker x:Name="SortFilterPicker" Title="Sort By" SelectedIndex="0">
+                        <Picker.Items>
+                            <x:String>Time</x:String>
+                            <x:String>Amount</x:String>
+                            <x:String>Description</x:String>
+                            <x:String>ExpenseType</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+                
+            </StackLayout>
+
+            <Grid>
+                <CollectionView x:Name="ViewAllExpensesCollectionView" SelectionMode="Single" Margin="10,0,0,0" Grid.Row="0">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
+                                <Image Source="bubbletea.png" HeightRequest="20" WidthRequest="20"></Image>
+                                <StackLayout WidthRequest="250">
+                                    <Label Text="{Binding expenseType}" FontSize="20"></Label>
+                                    <Label Text="{Binding description}" FontSize="15"></Label>
+                                </StackLayout>
+                                <Label Text="{Binding amount, StringFormat=${0}}" FontSize="25"></Label>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <ImageButton x:Name="AddExpenseButton" Clicked="AddExpenseButton_Clicked" Source="bubbletea.png" HeightRequest="60" WidthRequest="60" HorizontalOptions="End" 
+                             VerticalOptions="End" Padding="10" Margin="0,0,30,30" Grid.Row="0"></ImageButton>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
