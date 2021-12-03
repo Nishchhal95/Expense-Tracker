@@ -11,8 +11,8 @@
                 <ListView.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Home</x:String>
-                        <x:String>Expenses</x:String>
                         <x:String>Reminders</x:String>
+                        <x:String>Configure</x:String>
                         <x:String>Visualize Expenses</x:String>
                         <x:String>Settings</x:String>
                     </x:Array>
