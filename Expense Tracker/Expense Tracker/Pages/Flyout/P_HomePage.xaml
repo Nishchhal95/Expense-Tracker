@@ -4,53 +4,68 @@
              x:Class="Expense_Tracker.Pages.Flyout.P_HomePage">
     <ContentPage.Content>
         <StackLayout>
-            <Frame CornerRadius="40" BackgroundColor="Black" Margin="20,20,20,20" HeightRequest="100">
-                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
-                    <Label Text="$" FontSize="30" TextColor="White" Margin="20,30,0,0"></Label>
-                    <Label Text="1000" FontSize="60" TextColor="White" WidthRequest="250"></Label>
-                    <Label Text="USD" FontSize="15" TextColor="LightGray" HorizontalOptions="End" Margin="0,45,0,0"></Label>
+            <Frame CornerRadius="40" BackgroundColor="Black" Margin="10,10,10,10" HeightRequest="50">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="35">
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Horizontal" Spacing="2">
+                            <Label x:Name="AmountSpentCurrencyLabel" Text="$" FontSize="30" TextColor="White"></Label>
+                            <Label x:Name="AmountSpentLabel" Text="3500" FontSize="30" TextColor="White"></Label>
+                        </StackLayout>
+                        <Label Text="Amount Spent" TextColor="White" FontSize="12" HorizontalTextAlignment="Center"></Label>
+                    </StackLayout>
+                    
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Horizontal" Spacing="2">
+                            <Label x:Name="AmountLeftCurrencyLabel" Text="$" FontSize="30" TextColor="White"></Label>
+                            <Label x:Name="AmountLeftLabel" Text="1500" FontSize="30" TextColor="White"></Label>
+                        </StackLayout>
+                        <Label Text="Amount Left" TextColor="White" FontSize="12" HorizontalTextAlignment="Center"></Label>
+                    </StackLayout>
+                    
+                    <StackLayout Orientation="Vertical">
+                        <StackLayout Orientation="Horizontal" Spacing="2">
+                            <Label x:Name="MonthlyBudgetCurrencyLabel" Text="$" FontSize="30" TextColor="White"></Label>
+                            <Label x:Name="MonthlyBudgetLabel" Text="5000" FontSize="30" TextColor="White"></Label>
+                        </StackLayout>
+                        <Label Text="Monthly Budget" TextColor="White" FontSize="12" HorizontalTextAlignment="Center"></Label>
+                    </StackLayout>
                 </StackLayout>
             </Frame>
 
-            <StackLayout Orientation="Horizontal" Spacing="190">
-                <Label Text="Expenses" FontSize="20" TextColor="Black" HorizontalOptions="Start" Margin="25,5,0,0"></Label>
-                <Button x:Name="ViewAllExpensesButton" Clicked="ViewAllExpensesButton_Clicked" Text="View All" FontSize="12" HeightRequest="10" CornerRadius="20" HorizontalOptions="End"></Button>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="All Expenses" FontSize="20" TextColor="Black" HorizontalOptions="Start" Margin="10,-5,0,0"></Label>
+                <!--<Button x:Name="ViewAllExpensesButton" Clicked="ViewAllExpensesButton_Clicked" Text="View All" FontSize="12" HeightRequest="10" CornerRadius="20" HorizontalOptions="End"></Button>-->
             </StackLayout>
 
-            <!--<ListView x:Name="HomeExpensesListView">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{Binding amount}"></TextCell>
-                        --><!--<StackLayout Orientation="Horizontal">
-                            <Image Source="hamburger.png"></Image>
-                            <StackLayout>
-                                <Label Text="{Binding expenseType}"></Label>
-                                <Label Text="{Binding description}"></Label>
-                            </StackLayout>
-                            <Label Text="{Binding amount}"></Label>
-                        </StackLayout>--><!--
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
-
             <Grid>
-                <CollectionView x:Name="HomeExpensesCollectionView" SelectionMode="Single" Margin="10,0,0,0" Grid.Row="0">
+                <CollectionView x:Name="HomeExpensesCollectionView" SelectionMode="Single" Grid.Row="0">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20">
-                                <Image Source="bubbletea.png" HeightRequest="20" WidthRequest="20"></Image>
-                                <StackLayout WidthRequest="250">
-                                    <Label Text="{Binding expenseType}" FontSize="20"></Label>
-                                    <Label Text="{Binding description}" FontSize="15"></Label>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20" HeightRequest="50" Padding="10,5,10,5">
+                                <Image Source="bubbletea.png" HeightRequest="30" WidthRequest="30"></Image>
+                                <StackLayout WidthRequest="220" Spacing="0">
+                                    <Label Text="{Binding description}" FontSize="20"></Label>
+                                    <Label Text="{Binding expenseType}" FontSize="15"></Label>
                                 </StackLayout>
-                                <Label Text="{Binding amount, StringFormat=${0}}" FontSize="25"></Label>
+                                <StackLayout Orientation="Horizontal" Spacing="3" HorizontalOptions="EndAndExpand">
+                                    <Label x:Name="CollectionViewDataTemplateCurrencyLabel" Text="$" FontSize="25"></Label>
+                                    <Label Text="{Binding amount}" FontSize="25"></Label>
+                                </StackLayout>
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-                <ImageButton x:Name="AddExpenseButton" Clicked="AddExpenseButton_Clicked" Source="bubbletea.png" HeightRequest="60" WidthRequest="60" HorizontalOptions="End" 
-                             VerticalOptions="End" Padding="10" Margin="0,0,30,30" Grid.Row="0"></ImageButton>
+                <ImageButton x:Name="AddExpenseButton" 
+                             Clicked="AddExpenseButton_Clicked" 
+                             Source="bubbletea.png" 
+                             HeightRequest="60" WidthRequest="60" 
+                             HorizontalOptions="End" 
+                             VerticalOptions="End" 
+                             Padding="10" 
+                             Margin="0,0,30,30" 
+                             Grid.Row="0" 
+                             Opacity=".85"></ImageButton>
             </Grid>
         </StackLayout>
     </ContentPage.Content>
