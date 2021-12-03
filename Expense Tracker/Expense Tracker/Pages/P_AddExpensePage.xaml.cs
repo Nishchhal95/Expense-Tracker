@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Expense_Tracker.Controllers;
+using Expense_Tracker.Model;
 
 namespace Expense_Tracker.Pages
 {
@@ -30,12 +32,13 @@ namespace Expense_Tracker.Pages
                 return;
             }
 
-            AddExpenseAndMoveToViewAllExpensesPageAsync(realAmount, expenseType, description);
+            Expense expense = new Expense(realAmount, expenseType, description);
+            AddExpenseAndMoveToViewAllExpensesPageAsync(expense);
         }
 
-        private async Task AddExpenseAndMoveToViewAllExpensesPageAsync(float realAmount, Model.ExpenseType expenseType, string description)
+        private async Task AddExpenseAndMoveToViewAllExpensesPageAsync(Expense expense)
         {
-            App.Expenses.Add(new Model.Expense(App.Expenses.Count, realAmount, expenseType, description));
+            ExpenseManager.AddExpense(expense);
             await Navigation.PopAsync();
         }
     }

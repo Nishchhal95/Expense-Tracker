@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Expense_Tracker.Controllers;
+using Expense_Tracker.Model;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -16,12 +18,12 @@ namespace Expense_Tracker.Pages.Flyout
         public P_HomePage()
         {
             InitializeComponent();
-            UpdateExpenses();
         }
 
-        private void UpdateExpenses()
+        protected override void OnAppearing()
         {
-            HomeExpensesCollectionView.ItemsSource = App.Expenses;
+            base.OnAppearing();
+            HomeExpensesCollectionView.ItemsSource = ExpenseManager.Expenses;
         }
 
         private void AddExpenseButton_Clicked(object sender, EventArgs e)
@@ -33,13 +35,13 @@ namespace Expense_Tracker.Pages.Flyout
         {
             //await Navigation.PushAsync(new P_AddExpensePage());
             //TODO : For the time being we just directly add a dummy expense
-            App.Expenses.Add(new Model.Expense(App.Expenses.Count, 
-                GetRandomNumberWithinRange(50, 5000), 
-                (Model.ExpenseType)GetRandomNumberWithinRange(0, Enum.GetValues(typeof(Model.ExpenseType)).Length), 
-                "Demo Description"));
+            Expense dummyExpense = new Expense(GetRandomNumberWithinRange(50, 5000),
+                (ExpenseType)GetRandomNumberWithinRange(0, Enum.GetValues(typeof(ExpenseType)).Length),
+                "Demo Description");
+            ExpenseManager.AddExpense(dummyExpense);
 
-            HomeExpensesCollectionView.SelectedItem = App.Expenses[App.Expenses.Count - 1];
-            HomeExpensesCollectionView.ScrollTo(App.Expenses[App.Expenses.Count - 1]);
+            HomeExpensesCollectionView.SelectedItem = dummyExpense;
+            HomeExpensesCollectionView.ScrollTo(dummyExpense);
         }
 
         private int GetRandomNumberWithinRange(int starting, int end)

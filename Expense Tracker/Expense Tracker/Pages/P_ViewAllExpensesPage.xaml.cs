@@ -1,4 +1,5 @@
-﻿using Expense_Tracker.Pages.Flyout;
+﻿using Expense_Tracker.Controllers;
+using Expense_Tracker.Pages.Flyout;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,7 +18,7 @@ namespace Expense_Tracker.Pages
         public P_ViewAllExpensesPage()
         {
             InitializeComponent();
-            ViewAllExpensesCollectionView.ItemsSource = App.Expenses;
+            ViewAllExpensesCollectionView.ItemsSource = ExpenseManager.Expenses;
         }
 
         private void AddExpenseButton_Clicked(object sender, EventArgs e)
@@ -36,12 +37,12 @@ namespace Expense_Tracker.Pages
 
             if (string.IsNullOrEmpty(filterValue))
             {
-                ViewAllExpensesCollectionView.ItemsSource = App.Expenses;
+                ViewAllExpensesCollectionView.ItemsSource = ExpenseManager.Expenses;
             }
 
             else
             {
-                List<Model.Expense> filterResult = App.Expenses.Where(x => x.description.Contains(filterValue) 
+                List<Model.Expense> filterResult = ExpenseManager.Expenses.Where(x => x.description.Contains(filterValue) 
                 || x.expenseType.ToString().Contains(filterValue)).ToList();
                 ViewAllExpensesCollectionView.ItemsSource = filterResult;
             }

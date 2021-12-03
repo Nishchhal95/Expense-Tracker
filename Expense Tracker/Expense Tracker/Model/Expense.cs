@@ -6,14 +6,16 @@ namespace Expense_Tracker.Model
 {
     public class Expense
     {
+        public static int _id = -1;
         public int id { get; set; }
         public float amount { get; set; }
         public ExpenseType expenseType { get; set; }
         public string description { get; set; }
 
-        public Expense(int id, float amount, ExpenseType expenseType, string description)
+        public Expense(float amount, ExpenseType expenseType, string description)
         {
-            this.id = id;
+            _id++;
+            id = _id;
             this.amount = amount;
             this.expenseType = expenseType;
             this.description = description;
