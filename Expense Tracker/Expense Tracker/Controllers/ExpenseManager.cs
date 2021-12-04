@@ -27,12 +27,22 @@ namespace Expense_Tracker.Controllers
             expenses.Remove(expenses.First(x => x.id == expenseId));
         }
 
+        public static void RemoveAll()
+        {
+            expenses = new ObservableCollection<Expense>();
+        }
+
         public static Expense GetExpense(int expenseId)
         {
             return expenses.First(x => x.id == expenseId);
         }
 
         public static void AddExpenses(List<Expense> expenses)
+        {
+            ExpenseManager.expenses = new ObservableCollection<Expense>(expenses);
+        }
+
+        public static void AddExpenses(ObservableCollection<Expense> expenses)
         {
             ExpenseManager.expenses = new ObservableCollection<Expense>(expenses);
         }

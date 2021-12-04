@@ -59,5 +59,10 @@ namespace Expense_Tracker.Pages.Flyout
         {
             await Navigation.PushAsync(new P_ViewAllExpensesPage());
         }
+
+        private void ClearPreferencesButton_Clicked(object sender, EventArgs e)
+        {
+            PreferenceController.ClearAllData();
+        }
     }
 }

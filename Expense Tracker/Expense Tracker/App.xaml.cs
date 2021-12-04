@@ -25,11 +25,13 @@ namespace Expense_Tracker
         protected override void OnSleep()
         {
             Console.WriteLine("OnSleep");
+            AppManager.SaveAllData();
         }
 
         protected override void OnResume()
         {
             Console.WriteLine("OnResume");
+            AppManager.LoadAllData();
         }
     }
 }
