@@ -11,10 +11,12 @@ namespace Expense_Tracker.Controllers
     {
         public static void Initialize()
         {
+            ReminderManager.CreateDummyData();
             //TODO : Fetch Data From Somewhere
             if (!LoadAllData())
             {
                 ExpenseManager.CreateDummyData();
+               
             }
         }
 

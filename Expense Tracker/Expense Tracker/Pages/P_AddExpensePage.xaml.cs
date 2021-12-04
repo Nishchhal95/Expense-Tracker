@@ -32,7 +32,7 @@ namespace Expense_Tracker.Pages
                 return;
             }
 
-            Expense expense = new Expense(realAmount, expenseType, description);
+            Expense expense = new Expense(realAmount, expenseType, description, DateTime.Now);
             AddExpenseAndMoveToViewAllExpensesPageAsync(expense);
         }
 

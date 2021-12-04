@@ -15,6 +15,8 @@ namespace Expense_Tracker.Pages.Flyout
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class P_HomePage : ContentPage
     {
+        private HashSet<ExpenseType> expenseTypes = new HashSet<ExpenseType>();
+        private string filterText, sortByText;
         public P_HomePage()
         {
             InitializeComponent();
@@ -37,7 +39,7 @@ namespace Expense_Tracker.Pages.Flyout
             //TODO : For the time being we just directly add a dummy expense
             Expense dummyExpense = new Expense(GetRandomNumberWithinRange(50, 5000),
                 (ExpenseType)GetRandomNumberWithinRange(0, Enum.GetValues(typeof(ExpenseType)).Length),
-                "Demo Description");
+                "Demo Description", DateTime.Now);
             ExpenseManager.AddExpense(dummyExpense);
 
             HomeExpensesCollectionView.SelectedItem = dummyExpense;
@@ -63,6 +65,75 @@ namespace Expense_Tracker.Pages.Flyout
         private void ClearPreferencesButton_Clicked(object sender, EventArgs e)
         {
             PreferenceController.ClearAllData();
+        }
+
+        private void AdvancedSearchSwitch_Toggled(object sender, ToggledEventArgs e)
+        {
+            AdvancedSearchCheckBoxesLayout.IsVisible = e.Value;
+        }
+
+        private void FoodCheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+                expenseTypes.Add(ExpenseType.Food);
+            }
+            else
+            {
+                expenseTypes.Remove(ExpenseType.Food);
+            }
+            FilterResultBasedOnExpenseType();
+        }
+
+        private void ServiceCheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+                expenseTypes.Add(ExpenseType.Service);
+            }
+            else
+            {
+                expenseTypes.Remove(ExpenseType.Service);
+            }
+            FilterResultBasedOnExpenseType();
+        }
+
+        private void TravelCheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (e.Value)
+            {
+                expenseTypes.Add(ExpenseType.Travel);
+            }
+            else
+            {
+                expenseTypes.Remove(ExpenseType.Travel);
+            }
+            FilterResultBasedOnExpenseType();
+        }
+
+        private void ExpensesFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            filterText = e.NewTextValue;
+            FilterResultBasedOnExpenseType();
+        }
+
+        private void SortFilterPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Picker picker = (Picker)sender;
+            sortByText = picker.SelectedItem.ToString();
+            FilterResultBasedOnExpenseType();
+        }
+
+        private void FilterResultBasedOnExpenseType()
+        {
+            if (!AdvancedSearchCheckBoxesLayout.IsVisible)
+            {
+                return;
+            }
+
+            Console.WriteLine("****Filtering Results " + filterText + " -- " + sortByText + " -- " + expenseTypes.Count);
+            List<Expense> filterResult = ExpenseManager.GetExpensesOnCustomFilter<Expense>(filterText, sortByText, expenseTypes.ToList());
+            HomeExpensesCollectionView.ItemsSource = filterResult;
         }
     }
 }

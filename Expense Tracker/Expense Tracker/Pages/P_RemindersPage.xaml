@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Expense_Tracker.Pages.P_RemindersPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="50" Margin="-10,0,10,0">
+                <StackLayout HorizontalOptions="FillAndExpand">
+                    <SearchBar x:Name="ViewExpensesFilter" Placeholder="Filter" WidthRequest="260"></SearchBar>
+                </StackLayout>
+
+                <StackLayout  HorizontalOptions="EndAndExpand" Margin="0,-5,0,0">
+                    <Picker x:Name="SortFilterPicker" Title="Sort By" SelectedIndex="0" HeightRequest="60" WidthRequest="105" HorizontalTextAlignment="Center">
+                        <Picker.Items>
+                            <x:String>Time</x:String>
+                            <x:String>Amount</x:String>
+                            <x:String>Description</x:String>
+                            <x:String>ExpenseType</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+
+            </StackLayout>
+
+            <Grid>
+                <CollectionView x:Name="RemindersCollectionView" SelectionMode="Single" Grid.Row="0">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" Spacing="20" HeightRequest="50" Padding="10,5,10,5">
+                                <Image Source="bubbletea.png" HeightRequest="30" WidthRequest="30"></Image>
+                                <StackLayout WidthRequest="500" Spacing="0" HorizontalOptions="StartAndExpand">
+                                    <Label Text="{Binding reminderName}" FontSize="20"></Label>
+                                    <StackLayout Orientation="Horizontal" WidthRequest="500" HorizontalOptions="StartAndExpand" Spacing="50">
+                                        <Label Text="{Binding date, StringFormat='{0:dd,MM,yy}'}" FontSize="18"></Label>
+                                        <Label Text="{Binding time, StringFormat='{0:hh\\:mm}'}" FontSize="18"></Label>
+                                        <Label Text="{Binding repeatMode}" FontSize="18"></Label>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <ImageButton x:Name="AddExpenseButton" Source="bubbletea.png" HeightRequest="60" WidthRequest="60" HorizontalOptions="End" 
+                             VerticalOptions="End" Padding="10" Margin="0,0,30,30" Grid.Row="0"></ImageButton>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

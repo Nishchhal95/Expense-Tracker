@@ -12,13 +12,16 @@ namespace Expense_Tracker.Model
         public ExpenseType expenseType { get; set; }
         public string description { get; set; }
 
-        public Expense(float amount, ExpenseType expenseType, string description)
+        public DateTime expenseDate { get; set; }
+
+        public Expense(float amount, ExpenseType expenseType, string description, DateTime expenseDate)
         {
             _id++;
             id = _id;
             this.amount = amount;
             this.expenseType = expenseType;
             this.description = description;
+            this.expenseDate = expenseDate;
         }
     }
 
