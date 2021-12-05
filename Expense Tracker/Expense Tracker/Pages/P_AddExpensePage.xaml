@@ -6,24 +6,44 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="StartAndExpand" Margin="20,20,0,0">
-                <Label Text="Amount :" Margin="0,12,0,0" HorizontalOptions="StartAndExpand" FontSize="20"></Label>
-                <Entry x:Name="AmountField" Placeholder="Enter Amount" HorizontalOptions="StartAndExpand"></Entry>
+                <Label Text="Amount:" Margin="0,12,0,0" HorizontalOptions="StartAndExpand" FontSize="20"></Label>
+                <StackLayout Spacing="0">
+                    <Entry x:Name="AmountField" Placeholder="Enter Amount" HorizontalOptions="StartAndExpand"></Entry>
+                    <Label Text="Required*" FontSize="11" TextColor="DeepPink" Margin="2,-10,0,0"></Label>
+                </StackLayout>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="StartAndExpand" Margin="20,20,0,0">
-                <Label Text="Expense Type :"  Margin="0,12,0,0" HorizontalOptions="StartAndExpand" FontSize="20"></Label>
-                <Picker x:Name="ExpenseTypePicker" Title="Pick Expense Type" SelectedIndex="0" HorizontalOptions="StartAndExpand">
-                    <Picker.Items>
-                        <x:String>Food</x:String>
-                        <x:String>Service</x:String>
-                        <x:String>Travel</x:String>
-                    </Picker.Items>
-                </Picker>
+                <Label Text="Expense Type:"  Margin="0,12,0,0" HorizontalOptions="StartAndExpand" FontSize="20"></Label>
+                <StackLayout Spacing="0">
+                    <Picker x:Name="ExpenseTypePicker" Title="Pick Expense Type" SelectedIndex="0" HorizontalOptions="StartAndExpand">
+                        <Picker.Items>
+                            <x:String>Food</x:String>
+                            <x:String>Service</x:String>
+                            <x:String>Travel</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="Required*" FontSize="11" TextColor="DeepPink" Margin="2,-10,0,0"></Label>
+                </StackLayout>
+                
             </StackLayout>
 
             <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="StartAndExpand" Margin="20,20,0,0">
-                <Label Text="Description :"  Margin="0,12,0,0" HorizontalOptions="StartAndExpand" FontSize="20"></Label>
-                <Entry x:Name="DescriptionField" Placeholder="Enter a note/description" HorizontalOptions="StartAndExpand"></Entry>
+                <Label Text="Expense Type:"  Margin="0,12,0,0" HorizontalOptions="StartAndExpand" FontSize="20"></Label>
+                <StackLayout Spacing="0">
+                    <DatePicker x:Name="ExpenseDatePicker" HorizontalOptions="StartAndExpand"></DatePicker>
+                    <Label Text="Required*" FontSize="11" TextColor="DeepPink" Margin="2,-10,0,0"></Label>
+                </StackLayout>
+
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="StartAndExpand" Margin="20,20,0,0">
+                <Label Text="Description:"  Margin="0,12,0,0" HorizontalOptions="StartAndExpand" FontSize="20"></Label>
+                <StackLayout Spacing="0">
+                    <Entry x:Name="DescriptionField" Placeholder="Enter a note/description" HorizontalOptions="StartAndExpand"></Entry>
+                    <!--<Label Text="Required*" FontSize="11" TextColor="DeepPink" Margin="2,-10,0,0"></Label>-->
+                </StackLayout>
+                
             </StackLayout>
 
             <Button x:Name="AddExpenseButton" Clicked="AddExpenseButton_Clicked" Text="Add" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand" WidthRequest="300" Margin="0,0,0,10" CornerRadius="50"></Button>

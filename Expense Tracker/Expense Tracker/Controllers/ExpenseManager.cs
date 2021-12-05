@@ -19,6 +19,24 @@ namespace Expense_Tracker.Controllers
             {"Date", x => x.expenseDate }
         };
 
+        private static List<string> dummyDescriptions = new List<string>()
+        {
+            "Electricity Bill",
+            "Trip to Paris",
+            "Water Bill",
+            "Water Bottle",
+            "Pasta",
+            "Pizza",
+            "Coffee",
+            "University Fee",
+            "Internet",
+            "Netflix",
+            "Amazon Prime",
+            "Radio Bill",
+            "Internet Bill",
+            "Switzerland Trip"
+        };
+
         public static void AddExpense(Expense expense)
         {
             expenses.Add(expense);
@@ -102,11 +120,29 @@ namespace Expense_Tracker.Controllers
             Console.WriteLine("****Clearing Expenses Collection");
             expenses = new ObservableCollection<Expense>();
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < 10; i++)
             {
-                Expense expense = new Expense((100 * i) + 100, ExpenseType.Service, "Electricity Bill", new DateTime(2021,12,06));
+                Random random = new Random();
+                Expense expense = new Expense(GetRandomNumberWithinRange(30, 5000), 
+                    (ExpenseType)GetRandomNumberWithinRange(0, Enum.GetValues(typeof(ExpenseType)).Length), 
+                    dummyDescriptions[random.Next(0, dummyDescriptions.Count)], 
+                    RandomDay());
                 expenses.Add(expense);
             }
+        }
+
+        private static int GetRandomNumberWithinRange(int starting, int end)
+        {
+            Random r = new Random();
+            return r.Next(starting, end);
+        }
+
+        private static DateTime RandomDay()
+        {
+            Random gen = new Random();
+            DateTime start = new DateTime(1995, 1, 1);
+            int range = (DateTime.Today - start).Days;
+            return start.AddDays(gen.Next(range));
         }
     }
 }

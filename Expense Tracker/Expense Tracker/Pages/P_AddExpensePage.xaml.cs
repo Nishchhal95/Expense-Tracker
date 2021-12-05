@@ -26,13 +26,14 @@ namespace Expense_Tracker.Pages
             Model.ExpenseType expenseType = (Model.ExpenseType)ExpenseTypePicker.SelectedIndex;
             string description = DescriptionField.Text.Trim();
 
-            if (string.IsNullOrEmpty(amount) || !float.TryParse(amount, out float realAmount))
+            if (string.IsNullOrEmpty(amount) || !float.TryParse(amount, out float realAmount) || ExpenseDatePicker.Date == null)
             {
-                DisplayAlert("Alert", "Please Enter Amount!", "Cancel");
+                DisplayAlert("Alert", "Please Enter Amount or Select a Date", "Cancel");
                 return;
             }
 
-            Expense expense = new Expense(realAmount, expenseType, description, DateTime.Now);
+            Expense expense = new Expense(realAmount, expenseType, description, ExpenseDatePicker.Date);
+            P_HomePage.CurrentSelectedItem = expense;
             AddExpenseAndMoveToViewAllExpensesPageAsync(expense);
         }
 

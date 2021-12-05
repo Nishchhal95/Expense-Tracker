@@ -4,7 +4,7 @@
              x:Class="Expense_Tracker.Pages.Flyout.P_HomePage">
     <ContentPage.Content>
         <StackLayout>
-            <Frame CornerRadius="40" BackgroundColor="Black" Margin="10,10,10,10" HeightRequest="50">
+            <Frame CornerRadius="20" BackgroundColor="Black" Margin="10,10,10,10" HeightRequest="50">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="35">
                     <StackLayout Orientation="Vertical">
                         <StackLayout Orientation="Horizontal" Spacing="2">
@@ -45,8 +45,9 @@
                 </StackLayout>
 
                 <StackLayout  HorizontalOptions="EndAndExpand" Margin="0,-5,0,0">
-                    <Picker x:Name="SortFilterPicker" Title="Sort By" SelectedIndex="0" HeightRequest="60" WidthRequest="105" HorizontalTextAlignment="Center"
+                    <Picker x:Name="SortFilterPicker" Title="Sort By" HeightRequest="60" WidthRequest="105" HorizontalTextAlignment="Center"
                             SelectedIndexChanged="SortFilterPicker_SelectedIndexChanged">
+                        <Picker.SelectedIndex>0</Picker.SelectedIndex>
                         <Picker.Items>
                             <x:String>Date</x:String>
                             <x:String>Amount</x:String>
@@ -59,15 +60,15 @@
 
             <StackLayout x:Name="AdvancedSearchCheckBoxesLayout" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0,10,0,0" IsVisible="False">
                 <StackLayout Orientation="Horizontal" Spacing="0">
-                    <CheckBox x:Name="FoodCheckBox" CheckedChanged="FoodCheckBox_CheckedChanged"></CheckBox>
+                    <CheckBox ClassId="FoodCheckBox" x:Name="FoodCheckBox" CheckedChanged="ExpenseTypeCheckBox_CheckedChanged"></CheckBox>
                     <Image Source="bubbletea.png" HeightRequest="30" WidthRequest="30"></Image>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" Spacing="0">
-                    <CheckBox x:Name="ServiceCheckBox" CheckedChanged="ServiceCheckBox_CheckedChanged"></CheckBox>
+                    <CheckBox ClassId="ServiceCheckBox" x:Name="ServiceCheckBox" CheckedChanged="ExpenseTypeCheckBox_CheckedChanged"></CheckBox>
                     <Image Source="bubbletea.png" HeightRequest="30" WidthRequest="30"></Image>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" Spacing="0">
-                    <CheckBox x:Name="TravelCheckBox" CheckedChanged="TravelCheckBox_CheckedChanged"></CheckBox>
+                    <CheckBox ClassId="TravelCheckBox" x:Name="TravelCheckBox" CheckedChanged="ExpenseTypeCheckBox_CheckedChanged"></CheckBox>
                     <Image Source="bubbletea.png" HeightRequest="30" WidthRequest="30"></Image>
                 </StackLayout>
             </StackLayout>
@@ -76,11 +77,15 @@
                 <CollectionView x:Name="HomeExpensesCollectionView" SelectionMode="Single" Grid.Row="0">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20" HeightRequest="50" Padding="10,5,10,5">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20" HeightRequest="50" Padding="10,5,15,5">
                                 <Image Source="bubbletea.png" HeightRequest="30" WidthRequest="30"></Image>
                                 <StackLayout WidthRequest="220" Spacing="0">
                                     <Label Text="{Binding description}" FontSize="20"></Label>
-                                    <Label Text="{Binding expenseType}" FontSize="15"></Label>
+                                    <StackLayout Orientation="Horizontal" Spacing="20">
+                                        <Label Text="{Binding expenseType}" FontSize="15"></Label>
+                                        <Label Text="{Binding expenseDate, StringFormat='Date: {0:dd,MMM,yy}'}" FontSize="15" HorizontalOptions="EndAndExpand"></Label>
+                                    </StackLayout>
+                                    
                                 </StackLayout>
                                 <StackLayout Orientation="Horizontal" Spacing="3" HorizontalOptions="EndAndExpand">
                                     <Label x:Name="CollectionViewDataTemplateCurrencyLabel" Text="$" FontSize="25"></Label>
