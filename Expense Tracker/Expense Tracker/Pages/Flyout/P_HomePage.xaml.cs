@@ -78,7 +78,7 @@ namespace Expense_Tracker.Pages.Flyout
             }
 
             HomeExpensesCollectionView.SelectedItem = sortedObservableCollection[currentSelectedItemIndex];
-            HomeExpensesCollectionView.ScrollTo(CurrentSelectedItem);
+            HomeExpensesCollectionView.ScrollTo(sortedObservableCollection[currentSelectedItemIndex]);
         }
 
         private void AddExpenseButton_Clicked(object sender, EventArgs e)
@@ -88,7 +88,8 @@ namespace Expense_Tracker.Pages.Flyout
 
         private async void OpenAddExpensePageAsync()
         {
-            await Navigation.PushAsync(new P_AddExpensePage());
+            //await Navigation.PushAsync(new P_AddExpensePage());
+            await Navigation.PushAsync(new P_ExpenseDetailsPage());
             //TODO : For the time being we just directly add a dummy expense
             //Expense dummyExpense = new Expense(GetRandomNumberWithinRange(50, 5000),
             //    (ExpenseType)GetRandomNumberWithinRange(0, Enum.GetValues(typeof(ExpenseType)).Length),
@@ -285,6 +286,30 @@ namespace Expense_Tracker.Pages.Flyout
             });
 
             return filteredExpenses;
+        }
+
+        private void HomeExpensesCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void ItemEditButton_Invoked(object sender, EventArgs e)
+        {
+            Console.WriteLine(((SwipeItem)sender).Parent.Parent.Parent);
+           // Navigation.PushAsync(new P_ExpenseDetailsPage((Expense)HomeExpensesCollectionView.SelectedItem));
+        }
+
+        private async void ItemDeleteButton_Invoked(object sender, EventArgs e)
+        {
+            var alertState = await DisplayAlert("Delete Expense", "Are you sure you want to delete this expense", "Yes", "No");
+            if (!alertState)
+            {
+                return;
+            }
+
+            ExpenseManager.RemoveExpense((Expense)HomeExpensesCollectionView.SelectedItem);
+            CurrentSelectedItem = null;
+            InitializeCollectionViewAndUpdateSelection();
         }
 
         private List<Expense> GetFilterBySorting(List<Expense> expenses)

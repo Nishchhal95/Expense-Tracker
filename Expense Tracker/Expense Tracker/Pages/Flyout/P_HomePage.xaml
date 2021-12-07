@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Expense_Tracker.Pages.Flyout.P_HomePage">
+             x:Class="Expense_Tracker.Pages.Flyout.P_HomePage"
+             Title="Expenses">
     <ContentPage.Content>
         <StackLayout>
             <Frame CornerRadius="20" BackgroundColor="Black" Margin="10,10,10,10" HeightRequest="50">
@@ -74,24 +75,41 @@
             </StackLayout>
 
             <Grid>
-                <CollectionView x:Name="HomeExpensesCollectionView" SelectionMode="Single" Grid.Row="0">
+                <CollectionView x:Name="HomeExpensesCollectionView" SelectionMode="Single" Grid.Row="0" SelectionChanged="HomeExpensesCollectionView_SelectionChanged">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20" HeightRequest="50" Padding="10,5,15,5">
-                                <Image Source="bubbletea.png" HeightRequest="30" WidthRequest="30"></Image>
-                                <StackLayout WidthRequest="220" Spacing="0">
-                                    <Label Text="{Binding description}" FontSize="20"></Label>
-                                    <StackLayout Orientation="Horizontal" Spacing="20">
-                                        <Label Text="{Binding expenseType}" FontSize="15"></Label>
-                                        <Label Text="{Binding expenseDate, StringFormat='Date: {0:dd,MMM,yy}'}" FontSize="15" HorizontalOptions="EndAndExpand"></Label>
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems SwipeBehaviorOnInvoked="Close">
+                                        <SwipeItem x:Name="ItemEditButton" Text="Edit"
+                                   IconImageSource="bubbletea.png"
+                                   BackgroundColor="LightGreen"
+                                   Invoked="ItemEditButton_Invoked"
+                                    />
+                                        <SwipeItem x:Name="ItemDeleteButton" Text="Delete"
+                                   IconImageSource="bubbletea.png"
+                                   BackgroundColor="LightPink"
+                                   Invoked="ItemDeleteButton_Invoked"
+                                    />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20" HeightRequest="50" Padding="10,5,15,5">
+                                    <Image Source="bubbletea.png" HeightRequest="30" WidthRequest="30"></Image>
+                                    <StackLayout WidthRequest="220" Spacing="0">
+                                        <Label Text="{Binding description}" FontSize="20"></Label>
+                                        <StackLayout Orientation="Horizontal" Spacing="20">
+                                            <Label TextColor="Black" Text="{Binding expenseType}" FontSize="15"></Label>
+                                            <Label Text="{Binding expenseDate, StringFormat='Date: {0:dd,MMM,yy}'}" FontSize="15" HorizontalOptions="EndAndExpand"></Label>
+                                        </StackLayout>
+
                                     </StackLayout>
-                                    
+                                    <StackLayout Orientation="Horizontal" Spacing="3" HorizontalOptions="EndAndExpand">
+                                        <Label x:Name="CollectionViewDataTemplateCurrencyLabel" Text="$" FontSize="25"></Label>
+                                        <Label Text="{Binding amount}" FontSize="25"></Label>
+                                    </StackLayout>
                                 </StackLayout>
-                                <StackLayout Orientation="Horizontal" Spacing="3" HorizontalOptions="EndAndExpand">
-                                    <Label x:Name="CollectionViewDataTemplateCurrencyLabel" Text="$" FontSize="25"></Label>
-                                    <Label Text="{Binding amount}" FontSize="25"></Label>
-                                </StackLayout>
-                            </StackLayout>
+                            </SwipeView>
+
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
