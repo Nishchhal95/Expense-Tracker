@@ -34,6 +34,12 @@ namespace Expense_Tracker.Pages.Flyout
         public P_HomePage()
         {
             InitializeComponent();
+            InitializeApplication();
+        }
+        private void InitializeApplication()
+        {
+            //Read and Update Expenses List
+            ExpenseManager.AddExpenses(StorageController.Instance.GetExpenses());
         }
 
         protected override void OnAppearing()
@@ -41,7 +47,22 @@ namespace Expense_Tracker.Pages.Flyout
             base.OnAppearing();
 
             ResetFilters();
+            InitTopView();
+            CalculateAndUpdateTopView();
             InitializeCollectionViewAndUpdateSelection();
+        }
+
+        private void InitTopView()
+        {
+            MonthlyBudgetCurrencyLabel.Text = StorageController.Instance.GetAppCurrency().CurrencySign;
+            MonthlyBudgetLabel.Text = StorageController.Instance.GetMonthlyBudget().ToString();
+        }
+
+        private void CalculateAndUpdateTopView()
+        {
+            float totalExpenses = ExpenseManager.Expenses.Sum(x => x.amount);
+            AmountSpentCurrencyLabel.Text = StorageController.Instance.GetAppCurrency().CurrencySign;
+            AmountSpentLabel.Text = totalExpenses.ToString();
         }
 
         private void ResetFilters()
@@ -77,7 +98,7 @@ namespace Expense_Tracker.Pages.Flyout
                 currentSelectedItemIndex = sortedObservableCollection.IndexOf(CurrentSelectedItem);
             }
 
-            HomeExpensesCollectionView.SelectedItem = sortedObservableCollection[currentSelectedItemIndex];
+            HomeExpensesCollectionView.SelectedItem = null;
             HomeExpensesCollectionView.ScrollTo(sortedObservableCollection[currentSelectedItemIndex]);
         }
 
@@ -88,40 +109,7 @@ namespace Expense_Tracker.Pages.Flyout
 
         private async void OpenAddExpensePageAsync()
         {
-            //await Navigation.PushAsync(new P_AddExpensePage());
             await Navigation.PushAsync(new P_ExpenseDetailsPage());
-            //TODO : For the time being we just directly add a dummy expense
-            //Expense dummyExpense = new Expense(GetRandomNumberWithinRange(50, 5000),
-            //    (ExpenseType)GetRandomNumberWithinRange(0, Enum.GetValues(typeof(ExpenseType)).Length),
-            //    "Demo Description", RandomDay());
-            //ExpenseManager.AddExpense(dummyExpense);
-
-            //HomeExpensesCollectionView.SelectedItem = dummyExpense;
-            //HomeExpensesCollectionView.ScrollTo(dummyExpense);
-        }
-
-        private int GetRandomNumberWithinRange(int starting, int end)
-        {
-            Random r = new Random();
-            return r.Next(starting, end);
-        }
-
-        private DateTime RandomDay()
-        {
-            Random gen = new Random();
-            DateTime start = new DateTime(1995, 1, 1);
-            int range = (DateTime.Today - start).Days;
-            return start.AddDays(gen.Next(range));
-        }
-
-        private void ViewAllExpensesButton_Clicked(object sender, EventArgs e)
-        {
-            OpenViewAllExpensesPageAsync();
-        }
-
-        private async Task OpenViewAllExpensesPageAsync()
-        {
-            await Navigation.PushAsync(new P_ViewAllExpensesPage());
         }
 
         private void ClearPreferencesButton_Clicked(object sender, EventArgs e)
@@ -137,70 +125,6 @@ namespace Expense_Tracker.Pages.Flyout
                 FilterResultsAndUpdateUI();
             }
         }
-
-        //private void FoodCheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        //{
-        //    if (e.Value)
-        //    {
-        //        expenseTypes.Add(ExpenseType.Food);
-        //    }
-        //    else
-        //    {
-        //        expenseTypes.Remove(ExpenseType.Food);
-        //    }
-        //    FilterResultBasedOnExpenseType();
-        //}
-
-        //private void ServiceCheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        //{
-        //    if (e.Value)
-        //    {
-        //        expenseTypes.Add(ExpenseType.Service);
-        //    }
-        //    else
-        //    {
-        //        expenseTypes.Remove(ExpenseType.Service);
-        //    }
-        //    FilterResultBasedOnExpenseType();
-        //}
-
-        //private void TravelCheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
-        //{
-        //    if (e.Value)
-        //    {
-        //        expenseTypes.Add(ExpenseType.Travel);
-        //    }
-        //    else
-        //    {
-        //        expenseTypes.Remove(ExpenseType.Travel);
-        //    }
-        //    FilterResultBasedOnExpenseType();
-        //}
-
-        //private void ExpensesFilter_TextChanged(object sender, TextChangedEventArgs e)
-        //{
-        //    filterText = e.NewTextValue;
-        //    FilterResultBasedOnExpenseType();
-        //}
-
-        //private void SortFilterPicker_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    Picker picker = (Picker)sender;
-        //    sortByText = picker.SelectedItem.ToString();
-        //    FilterResultBasedOnExpenseType();
-        //}
-
-        //private void FilterResultBasedOnExpenseType()
-        //{
-        //    if (!AdvancedSearchCheckBoxesLayout.IsVisible)
-        //    {
-        //        return;
-        //    }
-
-        //    Console.WriteLine("****Filtering Results " + filterText + " -- " + sortByText + " -- " + expenseTypes.Count);
-        //    List<Expense> filterResult = ExpenseManager.GetExpensesOnCustomFilter<Expense>(filterText, sortByText, expenseTypes.ToList());
-        //    HomeExpensesCollectionView.ItemsSource = filterResult;
-        //}
 
         //UI Functions
         private void ExpensesFilter_TextChanged(object sender, TextChangedEventArgs e)
@@ -290,7 +214,11 @@ namespace Expense_Tracker.Pages.Flyout
 
         private void HomeExpensesCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            if((Expense)HomeExpensesCollectionView.SelectedItem == null)
+            {
+                return;
+            }
+            Navigation.PushAsync(new P_ExpenseDetailsPage((Expense)HomeExpensesCollectionView.SelectedItem));
         }
 
         private void ItemEditButton_Invoked(object sender, EventArgs e)

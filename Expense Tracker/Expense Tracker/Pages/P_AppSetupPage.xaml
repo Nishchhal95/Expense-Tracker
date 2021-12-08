@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Expense_Tracker.Pages.P_AppSetupPage"
+             Title="Welcome to Expense Tracker">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="App Setup" TextColor="Black"
+                   HorizontalOptions="Center" FontSize="25" Margin="9,0,0,20"></Label>
+
+            <StackLayout Spacing="-8" Margin="5,0,5,0">
+                <Picker x:Name="CurrencyPicker" Title="Select Currency" SelectedIndexChanged="CurrencyPicker_SelectedIndexChanged"></Picker>
+                <Label Text="Select Currency" Margin="4,0,0,0"></Label>
+            </StackLayout>
+
+            <StackLayout Spacing="-8" Margin="5,0,5,0">
+                <StackLayout Orientation="Horizontal" Spacing="0">
+                    <Label x:Name="CurrencySignLabel" Text="$" TextColor="Black" FontSize="18" Margin="3,10,0,0"></Label>
+                    <Entry x:Name="MonthlyBudgetInputField" Placeholder="Enter Monthly Budget" 
+                           HorizontalOptions="FillAndExpand" Keyboard="Numeric"></Entry>
+                </StackLayout>
+                <Label Text="Monthly Budget" Margin="4,0,0,0"></Label>
+            </StackLayout>
+
+            <Button x:Name="ProceedButton" Text="Proceed" VerticalOptions="EndAndExpand"
+                    HorizontalOptions="Center" Clicked="ProceedButton_Clicked"></Button>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -13,25 +13,40 @@ namespace Expense_Tracker
         public App()
         {
             InitializeComponent();
-            MainPage = new ET_Flyout();
-            AppManager.Initialize();
+            //StorageController.Instance.ClearAllData();
+            //My Method
+            InitializeApplication();
+        }
+
+        private void InitializeApplication()
+        {
+            //Check if this is a first time user
+            if (StorageController.Instance.IsFirstTimeLogin())
+            {
+                MainPage = new NavigationPage(new P_AppSetupPage());
+            }
+            else
+            {
+                MainPage = new ET_Flyout();
+            }
+
+            
         }
 
         protected override void OnStart()
         {
-            Console.WriteLine("OnStart");
+            Console.WriteLine("****OnStart");
         }
 
         protected override void OnSleep()
         {
-            Console.WriteLine("OnSleep");
-            AppManager.SaveAllData();
+            Console.WriteLine("****OnSleep");
+            AppController.Instance.SaveData();
         }
 
         protected override void OnResume()
         {
-            Console.WriteLine("OnResume");
-            AppManager.LoadAllData();
+            Console.WriteLine("****OnResume");
         }
     }
 }

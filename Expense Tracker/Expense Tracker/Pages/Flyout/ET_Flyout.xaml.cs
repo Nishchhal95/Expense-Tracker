@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Expense_Tracker.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,6 @@ namespace Expense_Tracker.Pages.Flyout
         private void SetStartingPage()
         {
             var page = (Page)Activator.CreateInstance(typeof(P_HomePage));
-            page.Title = "Home";
             Detail = new NavigationPage(page);
         }
 
