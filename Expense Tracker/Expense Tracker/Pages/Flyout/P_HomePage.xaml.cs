@@ -40,6 +40,8 @@ namespace Expense_Tracker.Pages.Flyout
             new RangeToColor(80,100, Color.Red),
         };
 
+        public Command<Expense> DeleteCommand { get; private set; }
+
         public P_HomePage()
         {
             InitializeComponent();
@@ -47,6 +49,11 @@ namespace Expense_Tracker.Pages.Flyout
         }
         private void InitializeApplication()
         {
+            DeleteCommand = new Command<Expense>(expense => 
+            { 
+                ExpenseManager.RemoveExpense(expense);
+                Console.WriteLine("I have Removed an Item from the list");
+            });
             //Read and Update Expenses List
             ExpenseManager.AddExpenses(StorageController.Instance.GetExpenses());
         }
@@ -56,8 +63,6 @@ namespace Expense_Tracker.Pages.Flyout
             base.OnAppearing();
 
             ResetFilters();
-            InitTopView();
-            CalculateAndUpdateTopView();
             InitializeCollectionViewAndUpdateSelection();
         }
 
@@ -94,6 +99,9 @@ namespace Expense_Tracker.Pages.Flyout
 
         private void InitializeCollectionViewAndUpdateSelection()
         {
+            InitTopView();
+            CalculateAndUpdateTopView();
+
             List<Expense> sortedExpenseList = new List<Expense>();
             List<Expense> originalExpenseList = ExpenseManager.Expenses.ToList();
             sortedExpenseList = originalExpenseList.OrderBy(nameToPropertyDictionary[sortByText]).ToList();
