@@ -31,6 +31,15 @@ namespace Expense_Tracker.Pages.Flyout
             {"Date", x => x.expenseDate }
         };
         private string filterText, sortByText = "Date";
+
+        private List<RangeToColor> rangeToColors = new List<RangeToColor>()
+        {
+            new RangeToColor(0,30, Color.Green),
+            new RangeToColor(30,50, Color.Yellow),
+            new RangeToColor(50,80, Color.Orange),
+            new RangeToColor(80,100, Color.Red),
+        };
+
         public P_HomePage()
         {
             InitializeComponent();
@@ -63,6 +72,15 @@ namespace Expense_Tracker.Pages.Flyout
             float totalExpenses = ExpenseManager.Expenses.Sum(x => x.amount);
             AmountSpentCurrencyLabel.Text = StorageController.Instance.GetAppCurrency().CurrencySign;
             AmountSpentLabel.Text = totalExpenses.ToString();
+
+            float percentageOfAmountSpent = (totalExpenses / StorageController.Instance.GetMonthlyBudget()) * 100;
+            RangeToColor rangeToColor = rangeToColors.Find(x => percentageOfAmountSpent >= x.lowerRange && percentageOfAmountSpent < x.upperRange);
+            if(rangeToColor == null)
+            {
+                rangeToColor = new RangeToColor(0, 100, Color.Green);
+            }
+            AmountSpentLabel.TextColor = rangeToColor.color;
+
         }
 
         private void ResetFilters()
@@ -249,6 +267,20 @@ namespace Expense_Tracker.Pages.Flyout
 
             List<Expense> sortedExpenses = expenses.OrderBy(nameToPropertyDictionary[sortByText]).ToList();
             return sortedExpenses;
+        }
+    }
+
+    public class RangeToColor
+    {
+        public float lowerRange;
+        public float upperRange;
+        public Color color;
+
+        public RangeToColor(float lowerRange, float upperRange, Color color)
+        {
+            this.lowerRange = lowerRange;
+            this.upperRange = upperRange;
+            this.color = color;
         }
     }
 }
