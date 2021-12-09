@@ -51,8 +51,8 @@ namespace Expense_Tracker.Pages.Flyout
         {
             DeleteCommand = new Command<Expense>(expense => 
             { 
-                ExpenseManager.RemoveExpense(expense);
-                Console.WriteLine("I have Removed an Item from the list");
+                //ExpenseManager.RemoveExpense(expense);
+                Console.WriteLine("I have Removed an Item from the list " + expense.description);
             });
             //Read and Update Expenses List
             ExpenseManager.AddExpenses(StorageController.Instance.GetExpenses());
@@ -245,25 +245,6 @@ namespace Expense_Tracker.Pages.Flyout
                 return;
             }
             Navigation.PushAsync(new P_ExpenseDetailsPage((Expense)HomeExpensesCollectionView.SelectedItem));
-        }
-
-        private void ItemEditButton_Invoked(object sender, EventArgs e)
-        {
-            Console.WriteLine(((SwipeItem)sender).Parent.Parent.Parent);
-           // Navigation.PushAsync(new P_ExpenseDetailsPage((Expense)HomeExpensesCollectionView.SelectedItem));
-        }
-
-        private async void ItemDeleteButton_Invoked(object sender, EventArgs e)
-        {
-            var alertState = await DisplayAlert("Delete Expense", "Are you sure you want to delete this expense", "Yes", "No");
-            if (!alertState)
-            {
-                return;
-            }
-
-            ExpenseManager.RemoveExpense((Expense)HomeExpensesCollectionView.SelectedItem);
-            CurrentSelectedItem = null;
-            InitializeCollectionViewAndUpdateSelection();
         }
 
         private List<Expense> GetFilterBySorting(List<Expense> expenses)

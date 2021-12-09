@@ -5,8 +5,9 @@
              Title="Welcome to Expense Tracker">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="App Setup" TextColor="Black"
-                   HorizontalOptions="Center" FontSize="25" Margin="9,0,0,20"></Label>
+            <Label Text="One Time Setup" TextColor="Black"
+                   HorizontalOptions="Center" FontSize="25" Margin="0,0,0,20"
+                   HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
 
             <StackLayout Spacing="-8" Margin="5,0,5,0">
                 <Picker x:Name="CurrencyPicker" Title="Select Currency" SelectedIndexChanged="CurrencyPicker_SelectedIndexChanged"></Picker>

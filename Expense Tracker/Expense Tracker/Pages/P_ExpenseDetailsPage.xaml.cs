@@ -135,5 +135,24 @@ namespace Expense_Tracker.Pages
             P_HomePage.CurrentSelectedItem = expense;
             Navigation.PopAsync();
         }
+
+        private void CanceAddExpenseButton_Clicked(object sender, EventArgs e)
+        {
+            P_HomePage.CurrentSelectedItem = null;
+            Navigation.PopAsync();
+        }
+
+        private async void DeleteExpenseButton_Clicked(object sender, EventArgs e)
+        {
+            var alertState = await DisplayAlert("Delete Expense", "Are you sure you want to delete this expense", "Yes", "No");
+            if (!alertState)
+            {
+                return;
+            }
+
+            ExpenseManager.RemoveExpense(expense);
+            P_HomePage.CurrentSelectedItem = null;
+            Navigation.PopAsync();
+        }
     }
 }

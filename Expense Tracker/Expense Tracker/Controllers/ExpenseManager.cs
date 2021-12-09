@@ -12,13 +12,6 @@ namespace Expense_Tracker.Controllers
         private static ObservableCollection<Expense> expenses = new ObservableCollection<Expense>();
         public static ReadOnlyObservableCollection<Expense> Expenses { get { return new ReadOnlyObservableCollection<Expense>(expenses); } }
 
-        private static Dictionary<string, Func<Expense, IComparable>> nameToPropertyDitionary = new Dictionary<string, Func<Expense, IComparable>>()
-        {
-            {"Amount", x => x.amount } ,
-            {"Description", x => x.description } ,
-            {"Date", x => x.expenseDate }
-        };
-
         private static List<string> dummyDescriptions = new List<string>()
         {
             "Electricity Bill",
@@ -40,11 +33,13 @@ namespace Expense_Tracker.Controllers
         public static void AddExpense(Expense expense)
         {
             expenses.Add(expense);
+            StorageController.Instance.SetExpenses(expenses.ToList());
         }
 
         public static void RemoveExpense(Expense expense)
         {
             expenses.Remove(expense);
+            StorageController.Instance.SetExpenses(expenses.ToList());
         }
 
         public static void RemoveExpense(int expenseId)
@@ -55,6 +50,7 @@ namespace Expense_Tracker.Controllers
         public static void RemoveAll()
         {
             expenses = new ObservableCollection<Expense>();
+            StorageController.Instance.SetExpenses(expenses.ToList());
         }
 
         public static Expense GetExpense(int expenseId)
@@ -62,55 +58,16 @@ namespace Expense_Tracker.Controllers
             return expenses.First(x => x.id == expenseId);
         }
 
-        public static List<Expense> GetExpensesByExpenseType(List<ExpenseType> expenseTypes)
-        {
-            return expenses.Where((x) => 
-            {
-                for (int i = 0; i < expenseTypes.Count; i++)
-                {
-                    if(x.expenseType == expenseTypes[i])
-                    {
-                        return true;
-                    }
-                }
-                return false;
-            }).ToList();
-        }
-
-        public static List<Expense> GetExpensesOnCustomFilter<T>(string searchText, string sortBy, List<ExpenseType> expenseTypes)
-        {
-            return expenses.Where((x) =>
-            {
-                for (int i = 0; i < expenseTypes.Count; i++)
-                {
-                    if (string.IsNullOrEmpty(searchText))
-                    {
-                        if (x.expenseType == expenseTypes[i])
-                        {
-                            return true;
-                        }
-                    }
-                    else
-                    {
-                        if (x.expenseType == expenseTypes[i] && x.description.Contains(searchText))
-                        {
-                            return true;
-                        }
-                    }
-                    
-                }
-                return false;
-            }).OrderBy(nameToPropertyDitionary[sortBy]).ToList();
-        }
-
         public static void AddExpenses(List<Expense> expenses)
         {
             ExpenseManager.expenses = new ObservableCollection<Expense>(expenses);
+            StorageController.Instance.SetExpenses(expenses.ToList());
         }
 
         public static void AddExpenses(ObservableCollection<Expense> expenses)
         {
             ExpenseManager.expenses = new ObservableCollection<Expense>(expenses);
+            StorageController.Instance.SetExpenses(expenses.ToList());
         }
 
         //Create and Fill Dummy Data

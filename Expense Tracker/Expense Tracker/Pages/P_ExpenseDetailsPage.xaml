@@ -33,12 +33,14 @@
             <StackLayout x:Name="AddExpenseButtonUI" Orientation="Horizontal" Margin="10,0,10,5" 
                          Spacing="10" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" IsVisible="False">
                 <Button x:Name="AddExpenseButton" Text="Add" Margin="10,0,10,5" VerticalOptions="EndAndExpand" Clicked="AddExpenseButton_Clicked"></Button>
+                <Button x:Name="CanceAddExpenseButton" Text="Cancel" Margin="10,0,10,5" VerticalOptions="EndAndExpand" Clicked="CanceAddExpenseButton_Clicked"></Button>
             </StackLayout>
             
             <StackLayout x:Name="UpdateExpenseButtonUI" Orientation="Horizontal" Margin="10,0,10,5" 
                          Spacing="10" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" IsVisible="False">
                 <Button x:Name="EditExpenseButton" Text="Edit" Clicked="EditExpenseButton_Clicked"></Button>
                 <Button x:Name="UpdateExpenseButton" Text="Update" Clicked="UpdateExpenseButton_Clicked"></Button>
+                <Button x:Name="DeleteExpenseButton" Text="Delete" Clicked="DeleteExpenseButton_Clicked"></Button>
             </StackLayout>
             
             
