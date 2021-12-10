@@ -40,8 +40,6 @@ namespace Expense_Tracker.Pages.Flyout
             new RangeToColor(80,100, Color.Red),
         };
 
-        public Command<Expense> DeleteCommand { get; private set; }
-
         public P_HomePage()
         {
             InitializeComponent();
@@ -49,11 +47,6 @@ namespace Expense_Tracker.Pages.Flyout
         }
         private void InitializeApplication()
         {
-            DeleteCommand = new Command<Expense>(expense => 
-            { 
-                //ExpenseManager.RemoveExpense(expense);
-                Console.WriteLine("I have Removed an Item from the list " + expense.description);
-            });
             //Read and Update Expenses List
             ExpenseManager.AddExpenses(StorageController.Instance.GetExpenses());
         }
@@ -79,6 +72,10 @@ namespace Expense_Tracker.Pages.Flyout
             AmountSpentLabel.Text = totalExpenses.ToString();
 
             float percentageOfAmountSpent = (totalExpenses / StorageController.Instance.GetMonthlyBudget()) * 100;
+            if(percentageOfAmountSpent > 99)
+            {
+                percentageOfAmountSpent = 99;
+            }
             RangeToColor rangeToColor = rangeToColors.Find(x => percentageOfAmountSpent >= x.lowerRange && percentageOfAmountSpent < x.upperRange);
             if(rangeToColor == null)
             {
