@@ -10,6 +10,7 @@ namespace Expense_Tracker.Controllers
     public class StorageController
     {
         private const string EXPENSE_LIST_KEY = "ExpenseList";
+        private const string EXPENSELIMIT_LIST_KEY = "ExpenseLimitList";
         //private const string REMINDERS_LIST_KEY = "RemindersList";
         private const string MONTHLY_BUDGET_KEY = "MonthlyBudget";
         private const string APP_CURRENCY_KEY = "AppCurrency";
@@ -78,6 +79,17 @@ namespace Expense_Tracker.Controllers
         public void SetAppCurrency(AppCurrency value)
         {
             Preferences.Set(APP_CURRENCY_KEY, JsonConvert.SerializeObject(value));
+        }
+
+        public List<ExpenseLimit> GetExpenseLimitList()
+        {
+            string jsonToLoad = Preferences.Get(EXPENSELIMIT_LIST_KEY, JsonConvert.SerializeObject(new List<ExpenseLimit>()));
+            return JsonConvert.DeserializeObject<List<ExpenseLimit>>(jsonToLoad);
+        }
+
+        public void SetExpenseLimitList(List<ExpenseLimit> expenseLimits)
+        {
+            Preferences.Set(EXPENSELIMIT_LIST_KEY, JsonConvert.SerializeObject(expenseLimits));
         }
 
         public void ClearAllData()

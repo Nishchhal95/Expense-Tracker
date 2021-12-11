@@ -23,6 +23,28 @@
                 <Label Text="Monthly Budget" Margin="4,0,0,0"></Label>
             </StackLayout>
 
+            <Label Text="Budget Limits" Margin="0,20,0,-20" FontAttributes="Bold" FontSize="22" TextColor="Black" HorizontalOptions="Center"></Label>
+
+            <CollectionView x:Name="ConfigureExpensesCollectionView" HorizontalOptions="Center" Margin="0,20,0,0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="5,25,5,-10" Spacing="-10">
+
+                            <Label Text="{Binding ExpenseType}" Margin="5,0,0,0" FontSize="20" TextColor="Black"></Label>
+
+                            <StackLayout Spacing="-5">
+                                <StackLayout Orientation="Horizontal" Spacing="0">
+                                    <Label Text="{Binding CurrencySign}" FontSize="18" Margin="4,10,0,0"></Label>
+                                    <Entry Text="{Binding ExpenseMaxLimit}" Placeholder="Enter Max Limit" HorizontalOptions="FillAndExpand" Keyboard="Numeric"></Entry>
+                                </StackLayout>
+                                <Label Text="Limit" Margin="4,0,0,0"></Label>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
             <Button x:Name="ProceedButton" Text="Proceed" VerticalOptions="EndAndExpand"
                     HorizontalOptions="Center" Clicked="ProceedButton_Clicked"></Button>
             

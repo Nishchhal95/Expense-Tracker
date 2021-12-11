@@ -12,6 +12,10 @@ namespace Expense_Tracker.Controllers
         private static ObservableCollection<Expense> expenses = new ObservableCollection<Expense>();
         public static ReadOnlyObservableCollection<Expense> Expenses { get { return new ReadOnlyObservableCollection<Expense>(expenses); } }
 
+        private static ObservableCollection<ExpenseLimit> expensesLimits = new ObservableCollection<ExpenseLimit>();
+        public static ReadOnlyObservableCollection<ExpenseLimit> ExpensesLimits { get { return new ReadOnlyObservableCollection<ExpenseLimit>(expensesLimits); } }
+
+
         private static List<string> dummyDescriptions = new List<string>()
         {
             "Electricity Bill",
@@ -68,6 +72,19 @@ namespace Expense_Tracker.Controllers
         {
             ExpenseManager.expenses = new ObservableCollection<Expense>(expenses);
             StorageController.Instance.SetExpenses(expenses.ToList());
+        }
+
+
+
+
+        public static void AddExpenseLimit(ExpenseLimit expenseLimit)
+        {
+            expensesLimits.Add(expenseLimit);
+        }
+
+        public static void AddExpenseLimitList(List<ExpenseLimit> expenseLimits)
+        {
+            expensesLimits = new ObservableCollection<ExpenseLimit>(expenseLimits);
         }
 
         //Create and Fill Dummy Data

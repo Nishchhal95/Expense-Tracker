@@ -35,7 +35,7 @@ namespace Expense_Tracker.Pages.Flyout
                 {
                     new ET_FlyoutFlyoutMenuItem { Id = 0, Title = "Expenses" , TargetType = typeof(P_HomePage)},
                     new ET_FlyoutFlyoutMenuItem { Id = 1, Title = "Reminders", TargetType = typeof(P_RemindersPage)},
-                    new ET_FlyoutFlyoutMenuItem { Id = 2, Title = "Configure", TargetType = typeof(P_ExpenseDetailsPage)},
+                    new ET_FlyoutFlyoutMenuItem { Id = 2, Title = "Configure", TargetType = typeof(P_ConfigureExpensesPage)},
                     new ET_FlyoutFlyoutMenuItem { Id = 3, Title = "Visualize Expenses", TargetType = typeof(P_VisualizeExpensesTabbedPage)},
                     new ET_FlyoutFlyoutMenuItem { Id = 4, Title = "Settings" },
                 });

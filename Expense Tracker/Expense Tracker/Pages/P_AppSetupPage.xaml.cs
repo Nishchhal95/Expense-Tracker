@@ -1,4 +1,5 @@
 ﻿using Expense_Tracker.Controllers;
+using Expense_Tracker.Model;
 using Expense_Tracker.Pages.Flyout;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,23 @@ namespace Expense_Tracker.Pages
         public P_AppSetupPage()
         {
             InitializeComponent();
+            List<ExpenseLimit> expenseLimits = StorageController.Instance.GetExpenseLimitList();
+            if (expenseLimits == null || expenseLimits.Count == 0)
+            {
+                for (int i = 0; i < Enum.GetNames(typeof(ExpenseType)).Length; i++)
+                {
+                    expenseLimits.Add(new ExpenseLimit()
+                    {
+                        ExpenseMaxLimit = 0,
+                        CurrencySign = StorageController.Instance.GetAppCurrency().CurrencySign,
+                        ExpenseType = (ExpenseType)i
+                    });
+                }
+
+                StorageController.Instance.SetExpenseLimitList(expenseLimits);
+            }
+
+            ExpenseManager.AddExpenseLimitList(expenseLimits);
         }
 
         protected override void OnAppearing()
@@ -24,6 +42,8 @@ namespace Expense_Tracker.Pages
             base.OnAppearing();
             CurrencyPicker.ItemsSource = AppController.GetListOfCurrencies();
             CurrencyPicker.SelectedIndex = 0;
+
+            ConfigureExpensesCollectionView.ItemsSource = ExpenseManager.ExpensesLimits;
         }
 
         private void ProceedButton_Clicked(object sender, EventArgs e)
@@ -40,6 +60,20 @@ namespace Expense_Tracker.Pages
                 DisplayAlert("Error!", "Please use numbers to fill Monthly Budget!", "Ok");
                 return;
             }
+
+            float expenseLimitTotal = 0;
+            foreach (var item in ExpenseManager.ExpensesLimits)
+            {
+                expenseLimitTotal += item.ExpenseMaxLimit;
+            }
+
+            if (expenseLimitTotal > monthlyBudget)
+            {
+                DisplayAlert("Error!", "Your Configuration Exceeds the Monthly Budget", "Ok");
+                return;
+            }
+
+            StorageController.Instance.SetExpenseLimitList(ExpenseManager.ExpensesLimits.ToList());
 
             //Save Monthly Budget
             AppController.Instance.MonthlyBudget = monthlyBudget;
@@ -58,6 +92,11 @@ namespace Expense_Tracker.Pages
             AppCurrency currentSelectedAppCurrency = AppController.currencyToStringDictionary[(AppCurrencies)CurrencyPicker.SelectedIndex];
             string currencySymbol = currentSelectedAppCurrency.CurrencySign;
             CurrencySignLabel.Text = currencySymbol;
+
+            foreach (var item in ExpenseManager.ExpensesLimits)
+            {
+                item.CurrencySign = currencySymbol;
+            }
         }
     }
 }
