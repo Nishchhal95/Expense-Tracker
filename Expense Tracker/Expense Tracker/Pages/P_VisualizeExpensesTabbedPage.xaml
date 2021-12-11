@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"  
+             x:Class="Expense_Tracker.Pages.P_VisualizeExpensesTabbedPage">
+  <!--Pages can be added as references or inline-->
+    <ContentPage Title="Line Chart">
+        <StackLayout>
+            <forms:ChartView x:Name="Chart1" Margin="0,20,0,20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage>
+    
+    <ContentPage Title="Pie Chart">
+        <StackLayout>
+            <forms:ChartView x:Name="Chart2" Margin="0,20,0,20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage>
+
+    <ContentPage Title="Bar Chart">
+        <StackLayout>
+            <forms:ChartView x:Name="Chart3" Margin="0,20,0,20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage>
+    
+</TabbedPage>
