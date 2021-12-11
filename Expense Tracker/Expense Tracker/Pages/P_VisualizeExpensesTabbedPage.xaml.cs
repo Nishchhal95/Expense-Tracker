@@ -30,7 +30,7 @@ namespace Expense_Tracker.Pages
             InitializeComponent();
             List<Expense> expenseList = ExpenseManager.Expenses.ToList();
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < Enum.GetNames(typeof(ExpenseType)).Length; i++)
             {
                 ExpenseType expenseType = (ExpenseType)i;
                 float total = expenseList.Where(x => x.expenseType == expenseType).Sum(x => x.amount);
