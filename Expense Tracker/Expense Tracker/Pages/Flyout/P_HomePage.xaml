@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Expense_Tracker.Pages.Flyout.P_HomePage"
-             Title="Expenses">
+             xmlns:resX="Expense_Tracker.ResX"
+             Title="{x:Static resX:MyResources.Expenses}">
     <ContentPage.Content>
         <StackLayout>
             <Frame CornerRadius="20" BackgroundColor="Black" Margin="50,10,50,10" HeightRequest="50" Padding="0,5,0,20">
@@ -12,7 +13,7 @@
                             <Label x:Name="AmountSpentCurrencyLabel" Text="$" FontSize="30" TextColor="White"></Label>
                             <Label x:Name="AmountSpentLabel" Text="3500" FontSize="30" TextColor="White"></Label>
                         </StackLayout>
-                        <Label Text="Amount Spent" TextColor="White" FontSize="12" HorizontalTextAlignment="Center"></Label>
+                        <Label Text="{x:Static resX:MyResources.Amount_Spent}" TextColor="White" FontSize="12" HorizontalTextAlignment="Center"></Label>
                     </StackLayout>
                     
                     <!--<StackLayout Orientation="Vertical">
@@ -28,14 +29,14 @@
                             <Label x:Name="MonthlyBudgetCurrencyLabel" Text="$" FontSize="30" TextColor="White"></Label>
                             <Label x:Name="MonthlyBudgetLabel" Text="5000" FontSize="30" TextColor="White"></Label>
                         </StackLayout>
-                        <Label Text="Monthly Budget" TextColor="White" FontSize="12" HorizontalTextAlignment="Center"></Label>
+                        <Label Text="{x:Static resX:MyResources.Monthly_Budget}" TextColor="White" FontSize="12" HorizontalTextAlignment="Center"></Label>
                     </StackLayout>
                 </StackLayout>
             </Frame>
 
             <StackLayout Orientation="Horizontal" Spacing="0">
                 <!--<Label Text="All Expenses" FontSize="20" TextColor="Black" HorizontalOptions="Start" Margin="10,-5,0,0"></Label>-->
-                <Label Text="Advanced Search" HorizontalOptions="Start" Margin="12,0,0,0"></Label>
+                <Label Text="{x:Static resX:MyResources.Advanced_Search}" HorizontalOptions="Start" Margin="12,0,0,0"></Label>
                 <Switch x:Name="AdvancedSearchSwitch" Toggled="AdvancedSearchSwitch_Toggled" Margin="0,-5,0,0" HorizontalOptions="Start"></Switch>
 
                 <StackLayout x:Name="AdvancedSearchCheckBoxesLayout" Orientation="Horizontal" HorizontalOptions="EndAndExpand"

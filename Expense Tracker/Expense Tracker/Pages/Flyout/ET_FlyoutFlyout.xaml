@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Expense_Tracker.Pages.Flyout.ET_FlyoutFlyout"
+             xmlns:resX="Expense_Tracker.ResX"
              Title="Flyout">
   <StackLayout>
     <ListView x:Name="MenuItemsListView"
@@ -24,7 +25,7 @@
           <Label
               Grid.Column="1"
               Grid.Row="2"
-              Text="AppName"
+              Text="{x:Static resX:MyResources.AppName}"
               Style="{DynamicResource SubtitleStyle}"/>
         </Grid>
       </ListView.Header>

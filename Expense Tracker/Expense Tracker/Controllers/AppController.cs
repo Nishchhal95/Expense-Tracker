@@ -1,7 +1,10 @@
 ﻿using Expense_Tracker.Model;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
 
 namespace Expense_Tracker.Controllers
@@ -15,6 +18,8 @@ namespace Expense_Tracker.Controllers
             {AppCurrencies.USD, new AppCurrency("US Dollar", "$") },
             {AppCurrencies.CAD, new AppCurrency("Canadian Dollar", "CA$") }
         };
+
+        private static Dictionary<string, string> localizedResources = new Dictionary<string, string>();
 
         public static AppController Instance 
         { 
@@ -72,6 +77,26 @@ namespace Expense_Tracker.Controllers
                 currencyNames.Add(item.CurrencyName);
             }
             return currencyNames;
+        }
+
+        public static Dictionary<string, string> GetLocalizedResources()
+        {
+            if(localizedResources != null && localizedResources.Count > 0)
+            {
+                return localizedResources;
+            }
+            ResourceManager MyResourceClass = new ResourceManager(typeof(MyResources));
+
+            ResourceSet resourceSet = MyResourceClass.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+            foreach (DictionaryEntry entry in resourceSet)
+            {
+                string resourceKey = entry.Key.ToString();
+                object resource = entry.Value;
+
+                localizedResources.Add(resourceKey, resource.ToString());
+            }
+
+            return localizedResources;
         }
 
         public void SaveData()

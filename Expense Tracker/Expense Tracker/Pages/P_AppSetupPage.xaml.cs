@@ -43,6 +43,7 @@ namespace Expense_Tracker.Pages
             CurrencyPicker.ItemsSource = AppController.GetListOfCurrencies();
             CurrencyPicker.SelectedIndex = 0;
 
+
             ConfigureExpensesCollectionView.ItemsSource = ExpenseManager.ExpensesLimits;
         }
 

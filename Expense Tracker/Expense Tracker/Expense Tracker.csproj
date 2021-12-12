@@ -73,6 +73,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="MyResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MyResources.resx</DependentUpon>
+    </Compile>
     <Compile Update="Pages\Flyout\ET_FlyoutFlyout.xaml.cs">
       <DependentUpon>ET_FlyoutFlyout.xaml</DependentUpon>
     </Compile>

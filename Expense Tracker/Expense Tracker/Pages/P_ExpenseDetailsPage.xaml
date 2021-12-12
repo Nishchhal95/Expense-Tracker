@@ -2,45 +2,46 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Expense_Tracker.Pages.P_ExpenseDetailsPage"
-             Title="Expense Details">
+             xmlns:resX="Expense_Tracker.ResX"
+             Title="{x:Static resX:MyResources.Expense_Details}">
     <ContentPage.Content>
         <StackLayout>
             
             <StackLayout x:Name="ExpenseDetailsUI" IsEnabled="False">
                 
                 <StackLayout Margin="10,0,10,0" Spacing="-8" HorizontalOptions="FillAndExpand" >
-                    <Entry x:Name="ExpenseAmount" Placeholder="Enter Amount"></Entry>
-                    <Label Text="Amount*" FontSize="12" Margin="4,0,0,0"></Label>
+                    <Entry x:Name="ExpenseAmount" Placeholder="{x:Static resX:MyResources.Enter_Amount}"></Entry>
+                    <Label Text="{x:Static resX:MyResources.Amount}" FontSize="12" Margin="4,0,0,0"></Label>
                 </StackLayout>
 
                 <StackLayout Margin="10,0,10,0" Spacing="-8" HorizontalOptions="FillAndExpand" >
                     <Picker x:Name="ExpenseTypePicker" Title="Select Expense Type"></Picker>
-                    <Label Text="Expense Type*" FontSize="12" Margin="4,0,0,0"></Label>
+                    <Label Text="{x:Static resX:MyResources.Expense_Type}" FontSize="12" Margin="4,0,0,0"></Label>
                 </StackLayout>
 
                 <StackLayout Margin="10,0,10,0" Spacing="-8" HorizontalOptions="FillAndExpand" >
                     <DatePicker x:Name="ExpenseDatePicker"></DatePicker>
-                    <Label Text="Expense Date*" FontSize="12" Margin="4,0,0,0"></Label>
+                    <Label Text="{x:Static resX:MyResources.Expense_Date}" FontSize="12" Margin="4,0,0,0"></Label>
                 </StackLayout>
 
                 <StackLayout Margin="10,0,10,0" Spacing="-8" HorizontalOptions="FillAndExpand" >
-                    <Entry x:Name="ExpenseDescription" Placeholder="Enter Description"></Entry>
-                    <Label Text="Description" FontSize="12" Margin="4,0,0,0"></Label>
+                    <Entry x:Name="ExpenseDescription" Placeholder="{x:Static resX:MyResources.Enter_Description}"></Entry>
+                    <Label Text="{x:Static resX:MyResources.Description}" FontSize="12" Margin="4,0,0,0"></Label>
                 </StackLayout>
                 
             </StackLayout>
            
             <StackLayout x:Name="AddExpenseButtonUI" Orientation="Horizontal" Margin="10,0,10,5" 
                          Spacing="10" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" IsVisible="False">
-                <Button x:Name="AddExpenseButton" Text="Add" Margin="10,0,10,5" VerticalOptions="EndAndExpand" Clicked="AddExpenseButton_Clicked"></Button>
-                <Button x:Name="CanceAddExpenseButton" Text="Cancel" Margin="10,0,10,5" VerticalOptions="EndAndExpand" Clicked="CanceAddExpenseButton_Clicked"></Button>
+                <Button x:Name="AddExpenseButton" Text="{x:Static resX:MyResources.Add}" Margin="10,0,10,5" VerticalOptions="EndAndExpand" Clicked="AddExpenseButton_Clicked"></Button>
+                <Button x:Name="CanceAddExpenseButton" Text="{x:Static resX:MyResources.Cancel}" Margin="10,0,10,5" VerticalOptions="EndAndExpand" Clicked="CanceAddExpenseButton_Clicked"></Button>
             </StackLayout>
             
             <StackLayout x:Name="UpdateExpenseButtonUI" Orientation="Horizontal" Margin="10,0,10,5" 
                          Spacing="10" VerticalOptions="EndAndExpand" HorizontalOptions="CenterAndExpand" IsVisible="False">
-                <Button x:Name="EditExpenseButton" Text="Edit" Clicked="EditExpenseButton_Clicked"></Button>
-                <Button x:Name="UpdateExpenseButton" Text="Update" Clicked="UpdateExpenseButton_Clicked"></Button>
-                <Button x:Name="DeleteExpenseButton" Text="Delete" Clicked="DeleteExpenseButton_Clicked"></Button>
+                <Button x:Name="EditExpenseButton" Text="{x:Static resX:MyResources.Edit}" Clicked="EditExpenseButton_Clicked"></Button>
+                <Button x:Name="UpdateExpenseButton" Text="{x:Static resX:MyResources.Update}" Clicked="UpdateExpenseButton_Clicked"></Button>
+                <Button x:Name="DeleteExpenseButton" Text="{x:Static resX:MyResources.Delete}" Clicked="DeleteExpenseButton_Clicked"></Button>
             </StackLayout>
             
             
