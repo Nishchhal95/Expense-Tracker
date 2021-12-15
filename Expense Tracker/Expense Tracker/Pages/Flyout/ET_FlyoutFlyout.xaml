@@ -26,6 +26,7 @@
               Grid.Column="1"
               Grid.Row="2"
               Text="{x:Static resX:MyResources.AppName}"
+              FontSize="30"
               Style="{DynamicResource SubtitleStyle}"/>
         </Grid>
       </ListView.Header>
@@ -36,7 +37,7 @@
               <Label VerticalOptions="FillAndExpand" 
                     VerticalTextAlignment="Center" 
                     Text="{Binding Title}" 
-                    FontSize="24"/>
+                    FontSize="22"/>
             </StackLayout>
           </ViewCell>
         </DataTemplate>

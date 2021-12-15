@@ -34,10 +34,10 @@ namespace Expense_Tracker.Pages.Flyout
                 MenuItems = new ObservableCollection<ET_FlyoutFlyoutMenuItem>(new[]
                 {
                     new ET_FlyoutFlyoutMenuItem { Id = 0, Title = MyResources.Expenses , TargetType = typeof(P_HomePage)},
-                    new ET_FlyoutFlyoutMenuItem { Id = 1, Title = MyResources.Reminders, TargetType = typeof(P_RemindersPage)},
-                    new ET_FlyoutFlyoutMenuItem { Id = 2, Title = MyResources.Configure, TargetType = typeof(P_ConfigureExpensesPage)},
-                    new ET_FlyoutFlyoutMenuItem { Id = 3, Title = MyResources.Visualize_Expenses, TargetType = typeof(P_VisualizeExpensesTabbedPage)},
-                    new ET_FlyoutFlyoutMenuItem { Id = 4, Title = MyResources.Settings },
+                    new ET_FlyoutFlyoutMenuItem { Id = 1, Title = MyResources.Visualize_Expenses, TargetType = typeof(P_VisualizeExpensesTabbedPage)},
+                    new ET_FlyoutFlyoutMenuItem { Id = 2, Title = MyResources.Settings, TargetType = typeof(P_ConfigureExpensesPage)},
+                    //new ET_FlyoutFlyoutMenuItem { Id = 3, Title = MyResources.Visualize_Expenses, TargetType = typeof(P_VisualizeExpensesTabbedPage)},
+                    //new ET_FlyoutFlyoutMenuItem { Id = 4, Title = MyResources.Settings },
                 });
             }
 
