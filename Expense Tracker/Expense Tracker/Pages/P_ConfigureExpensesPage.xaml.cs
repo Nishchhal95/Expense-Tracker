@@ -34,6 +34,9 @@ namespace Expense_Tracker.Pages
             }
 
             ExpenseManager.AddExpenseLimitList(expenseLimits);
+
+            List<string> appLanguages = AppController.appLanguageDictionary.Values.ToList();
+            LanguagePicker.ItemsSource = appLanguages;
         }
 
         protected override void OnAppearing()

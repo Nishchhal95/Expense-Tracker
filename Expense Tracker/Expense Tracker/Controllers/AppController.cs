@@ -19,6 +19,15 @@ namespace Expense_Tracker.Controllers
             {AppCurrencies.CAD, new AppCurrency("Canadian Dollar", "CA$") }
         };
 
+        public static Dictionary<string, string> appLanguageDictionary = new Dictionary<string, string>
+        {
+            {"en", "English"},
+            {"hi", "Hindi"},
+            {"de", "German"},
+            { "ar", "Arabic"},
+            {"fr", "French"}
+        };
+
         private static Dictionary<string, string> localizedResources = new Dictionary<string, string>();
 
         public static AppController Instance 
