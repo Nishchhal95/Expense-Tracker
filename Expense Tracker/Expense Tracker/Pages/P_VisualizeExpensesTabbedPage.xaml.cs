@@ -38,7 +38,9 @@ namespace Expense_Tracker.Pages
                 {
                     Color = expenseTypeToColorDictionary[expenseType],
                     Label = expenseType.ToString(),
-                    ValueLabel = StorageController.Instance.GetAppCurrency().CurrencySign + total.ToString()
+                    ValueLabel = StorageController.Instance.GetAppCurrency().CurrencySign + total.ToString(),
+                    ValueLabelColor = expenseTypeToColorDictionary[expenseType],
+                    TextColor = expenseTypeToColorDictionary[expenseType]
                 };
                 entries.Add(entry);
             }
