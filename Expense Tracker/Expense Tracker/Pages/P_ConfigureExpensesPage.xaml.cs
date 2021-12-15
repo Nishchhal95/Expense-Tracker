@@ -35,8 +35,29 @@ namespace Expense_Tracker.Pages
 
             ExpenseManager.AddExpenseLimitList(expenseLimits);
 
-            List<string> appLanguages = AppController.appLanguageDictionary.Values.ToList();
+            List<string> appLanguages = AppController.appLanguageDictionary.Keys.ToList();
             LanguagePicker.ItemsSource = appLanguages;
+            string selectedLanguage = "en";
+            string selectedPickerLanguage = "English";
+            if (Application.Current.Properties.ContainsKey("Language"))
+            {
+                selectedLanguage = Application.Current.Properties["Language"].ToString();
+            }
+            if (string.IsNullOrEmpty(selectedLanguage))
+            {
+                selectedLanguage = "en";
+            }
+
+            foreach (var item in AppController.appLanguageDictionary.Keys)
+            {
+                if (AppController.appLanguageDictionary[item].Equals(selectedLanguage))
+                {
+                    selectedPickerLanguage = item;
+                    break;
+                }
+            }
+
+            LanguagePicker.SelectedItem = selectedPickerLanguage;
         }
 
         protected override void OnAppearing()
@@ -53,13 +74,21 @@ namespace Expense_Tracker.Pages
             ConfigureExpensesCollectionView.ItemsSource = ExpenseManager.ExpensesLimits;
         }
 
-        private void UpdateButton_Clicked(object sender, EventArgs e)
+        private async void UpdateButton_Clicked(object sender, EventArgs e)
         {
             float monthlyBudget = StorageController.Instance.GetMonthlyBudget();
             float expenseLimitTotal = 0;
             foreach (var item in ExpenseManager.ExpensesLimits)
             {
                 expenseLimitTotal += item.ExpenseMaxLimit;
+            }
+
+            string selectedLanguage = LanguagePicker.SelectedItem.ToString();
+            if(!AppController.appLanguageDictionary.TryGetValue(selectedLanguage, out string selectedLanguageCode)
+                || string.IsNullOrEmpty(selectedLanguageCode))
+            {
+                DisplayAlert("Error!", "Select Language again...", "Ok");
+                return;
             }
 
             if(expenseLimitTotal > monthlyBudget)
@@ -69,8 +98,10 @@ namespace Expense_Tracker.Pages
             }
 
             StorageController.Instance.SetExpenseLimitList(ExpenseManager.ExpensesLimits.ToList());
+            Application.Current.Properties["Language"] = selectedLanguageCode;
+            await Application.Current.SavePropertiesAsync();
 
-            DisplayAlert("Success!", "New Limits Updated!", "Ok");
+            DisplayAlert("Success!", "New Limits Updated, Language changes will take affect after a restart of the application.", "Ok");
         }
     }
 }

@@ -21,11 +21,11 @@ namespace Expense_Tracker.Controllers
 
         public static Dictionary<string, string> appLanguageDictionary = new Dictionary<string, string>
         {
-            {"en", "English"},
-            {"hi", "Hindi"},
-            {"de", "German"},
-            { "ar", "Arabic"},
-            {"fr", "French"}
+            {"English", "en"},
+            {"Hindi", "hi"},
+            {"German", "de"},
+            {"Arabic", "ar"},
+            {"French", "fr"}
         };
 
         private static Dictionary<string, string> localizedResources = new Dictionary<string, string>();
