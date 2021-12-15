@@ -35,7 +35,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
-            <StackLayout Margin="5,0,0,120" HorizontalOptions="StartAndExpand" Spacing="-5">
+            <StackLayout Margin="5,0,0,40" HorizontalOptions="StartAndExpand" Spacing="-5">
                 <Picker Title="Pick a Language" x:Name="LanguagePicker"></Picker>
                 <Label Text="Language" Margin="5,0,0,0"></Label>
             </StackLayout>

@@ -22,7 +22,8 @@ namespace Expense_Tracker.Pages
         {
             {ExpenseType.Food,  SKColor.Parse("#52D726")},
             {ExpenseType.Service,  SKColor.Parse("#FFEC00")},
-            {ExpenseType.Travel,  SKColor.Parse("#FF7300")}
+            {ExpenseType.Travel,  SKColor.Parse("#FF7300")},
+            {ExpenseType.Others,  SKColor.Parse("#F305FF")}
         };
 
         public P_VisualizeExpensesTabbedPage()

@@ -21,7 +21,8 @@ namespace Expense_Tracker.Pages.Flyout
         {
                 {"FoodCheckBox", ExpenseType.Food },
                 {"ServiceCheckBox", ExpenseType.Service },
-                {"TravelCheckBox", ExpenseType.Travel }
+                {"TravelCheckBox", ExpenseType.Travel },
+                {"OthersCheckBox", ExpenseType.Others },
         };
         private HashSet<ExpenseType> expenseTypes = new HashSet<ExpenseType>();
         private static Dictionary<string, Func<Expense, IComparable>> nameToPropertyDictionary = new Dictionary<string, Func<Expense, IComparable>>()

@@ -12,6 +12,7 @@ namespace Expense_Tracker.Model
             {ExpenseType.Food, "food.png" },
             {ExpenseType.Service, "service.png" },
             {ExpenseType.Travel, "travel.png" },
+            {ExpenseType.Others, "others.png" },
         };
         public static int _id = -1;
         public int id { get; set; }
@@ -41,6 +42,7 @@ namespace Expense_Tracker.Model
     {
         Food,
         Service,
-        Travel
+        Travel,
+        Others
     }
 }

@@ -7,7 +7,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="{x:Static resX:MyResources.OneTimeSetup_Message}" TextColor="Black"
-                   HorizontalOptions="Center" FontSize="25" Margin="0,0,0,20"
+                   HorizontalOptions="Center" FontSize="25" Margin="0,0,0,-10"
                    HorizontalTextAlignment="Center" FontAttributes="Bold"></Label>
 
             <StackLayout Spacing="-8" Margin="5,0,5,0">
@@ -24,9 +24,9 @@
                 <Label Text="{x:Static resX:MyResources.Monthly_Budget}" Margin="4,0,0,0"></Label>
             </StackLayout>
 
-            <Label Text="{x:Static resX:MyResources.Budget_Limits}" Margin="0,20,0,-20" FontAttributes="Bold" FontSize="22" TextColor="Black" HorizontalOptions="Center"></Label>
+            <Label Text="{x:Static resX:MyResources.Budget_Limits}" Margin="0,0,0,0" FontAttributes="Bold" FontSize="22" TextColor="Black" HorizontalOptions="Center"></Label>
 
-            <CollectionView x:Name="ConfigureExpensesCollectionView" HorizontalOptions="Center" Margin="0,20,0,0">
+            <CollectionView x:Name="ConfigureExpensesCollectionView" HorizontalOptions="Center" Margin="0,0,0,0">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Margin="5,25,5,-10" Spacing="-10">
