@@ -6,7 +6,7 @@
              Title="{x:Static resX:MyResources.Expenses}">
     <ContentPage.Content>
         <StackLayout>
-            <Frame CornerRadius="20" BackgroundColor="Black" Margin="50,10,50,10" HeightRequest="50" Padding="0,5,0,20">
+            <Frame CornerRadius="20" BackgroundColor="#03A9F4" Margin="8,10,8,10" HeightRequest="50" Padding="0,5,0,20">
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="50">
                     <StackLayout Orientation="Vertical">
                         <StackLayout Orientation="Horizontal" Spacing="2">
